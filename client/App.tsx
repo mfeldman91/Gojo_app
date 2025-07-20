@@ -20,6 +20,7 @@ import CourseDetail from "./pages/CourseDetail";
 import InstructorProfile from "./pages/InstructorProfile";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import CreateCourse from "./pages/CreateCourse";
+import Billing from "./pages/Billing";
 
 const queryClient = new QueryClient();
 
