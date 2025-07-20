@@ -87,7 +87,10 @@ export function Navigation() {
               >
                 About
               </Link>
-                            <div className="pt-4 space-y-2">
+                                          <div className="pt-4 space-y-2">
+                <Button variant="outline" className="w-full" asChild>
+                  <Link to="/instructor/dashboard" onClick={() => setIsMenuOpen(false)}>Teach on Gojo</Link>
+                </Button>
                 <Button variant="ghost" className="w-full" asChild>
                   <Link to="/profile" onClick={() => setIsMenuOpen(false)}>My Profile</Link>
                 </Button>
