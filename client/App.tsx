@@ -14,6 +14,9 @@ import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
+import Community from "./pages/Community";
+import CourseDetail from "./pages/CourseDetail";
 
 const queryClient = new QueryClient();
 
