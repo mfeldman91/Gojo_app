@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Navigation } from "@/components/Navigation";
-import { 
-  Plus, 
-  TrendingUp, 
-  Users, 
-  DollarSign, 
+import {
+  Plus,
+  TrendingUp,
+  Users,
+  DollarSign,
   Star,
   Eye,
   Edit,
@@ -21,7 +27,7 @@ import {
   BarChart3,
   Clock,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
 } from "lucide-react";
 
 export default function InstructorDashboard() {
@@ -34,7 +40,7 @@ export default function InstructorDashboard() {
     averageRating: 4.9,
     totalReviews: 234,
     coursesPublished: 12,
-    coursesInDraft: 2
+    coursesInDraft: 2,
   };
 
   const courses = [
@@ -47,18 +53,18 @@ export default function InstructorDashboard() {
       rating: 4.9,
       reviews: 87,
       lastUpdated: "2024-01-15",
-      thumbnail: "wing-chun-thumb"
+      thumbnail: "wing-chun-thumb",
     },
     {
       id: 2,
       title: "Advanced Kung Fu Forms",
-      status: "published", 
+      status: "published",
       students: 156,
       revenue: 8200,
       rating: 4.8,
       reviews: 43,
       lastUpdated: "2024-01-10",
-      thumbnail: "kung-fu-thumb"
+      thumbnail: "kung-fu-thumb",
     },
     {
       id: 3,
@@ -69,7 +75,7 @@ export default function InstructorDashboard() {
       rating: 4.9,
       reviews: 31,
       lastUpdated: "2024-01-08",
-      thumbnail: "weapons-thumb"
+      thumbnail: "weapons-thumb",
     },
     {
       id: 4,
@@ -80,7 +86,7 @@ export default function InstructorDashboard() {
       rating: 0,
       reviews: 0,
       lastUpdated: "2024-01-16",
-      thumbnail: "meditation-thumb"
+      thumbnail: "meditation-thumb",
     },
     {
       id: 5,
@@ -91,31 +97,31 @@ export default function InstructorDashboard() {
       rating: 0,
       reviews: 0,
       lastUpdated: "2024-01-14",
-      thumbnail: "self-defense-thumb"
-    }
+      thumbnail: "self-defense-thumb",
+    },
   ];
 
   const recentActivity = [
     {
       type: "new_student",
       message: "Sarah Johnson enrolled in Wing Chun Fundamentals",
-      time: "2 hours ago"
+      time: "2 hours ago",
     },
     {
       type: "review",
       message: "New 5-star review on Advanced Kung Fu Forms",
-      time: "4 hours ago"
+      time: "4 hours ago",
     },
     {
       type: "revenue",
       message: "Earned $89 from course sales today",
-      time: "6 hours ago"
+      time: "6 hours ago",
     },
     {
       type: "message",
       message: "New message from student Mike Rodriguez",
-      time: "1 day ago"
-    }
+      time: "1 day ago",
+    },
   ];
 
   const getStatusBadge = (status: string) => {
@@ -123,7 +129,9 @@ export default function InstructorDashboard() {
       case "published":
         return <Badge className="bg-green-100 text-green-800">Published</Badge>;
       case "review":
-        return <Badge className="bg-yellow-100 text-yellow-800">Under Review</Badge>;
+        return (
+          <Badge className="bg-yellow-100 text-yellow-800">Under Review</Badge>
+        );
       case "draft":
         return <Badge variant="secondary">Draft</Badge>;
       default:
@@ -134,12 +142,14 @@ export default function InstructorDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-bold text-foreground">Instructor Dashboard</h1>
+            <h1 className="text-3xl font-bold text-foreground">
+              Instructor Dashboard
+            </h1>
             <Button asChild>
               <Link to="/instructor/create-course">
                 <Plus className="w-4 h-4 mr-2" />
@@ -158,14 +168,20 @@ export default function InstructorDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total Revenue</p>
-                  <p className="text-2xl font-bold">${instructorStats.totalRevenue.toLocaleString()}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Total Revenue
+                  </p>
+                  <p className="text-2xl font-bold">
+                    ${instructorStats.totalRevenue.toLocaleString()}
+                  </p>
                 </div>
                 <DollarSign className="h-8 w-8 text-primary" />
               </div>
               <div className="flex items-center pt-2">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-                <span className="text-sm text-green-500">+12% from last month</span>
+                <span className="text-sm text-green-500">
+                  +12% from last month
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -174,14 +190,20 @@ export default function InstructorDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total Students</p>
-                  <p className="text-2xl font-bold">{instructorStats.totalStudents}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Total Students
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {instructorStats.totalStudents}
+                  </p>
                 </div>
                 <Users className="h-8 w-8 text-accent" />
               </div>
               <div className="flex items-center pt-2">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-                <span className="text-sm text-green-500">+{instructorStats.newStudents} this month</span>
+                <span className="text-sm text-green-500">
+                  +{instructorStats.newStudents} this month
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -190,13 +212,19 @@ export default function InstructorDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Average Rating</p>
-                  <p className="text-2xl font-bold">{instructorStats.averageRating}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Average Rating
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {instructorStats.averageRating}
+                  </p>
                 </div>
                 <Star className="h-8 w-8 text-yellow-500" />
               </div>
               <div className="flex items-center pt-2">
-                <span className="text-sm text-muted-foreground">{instructorStats.totalReviews} reviews</span>
+                <span className="text-sm text-muted-foreground">
+                  {instructorStats.totalReviews} reviews
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -205,13 +233,19 @@ export default function InstructorDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Published Courses</p>
-                  <p className="text-2xl font-bold">{instructorStats.coursesPublished}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Published Courses
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {instructorStats.coursesPublished}
+                  </p>
                 </div>
                 <Award className="h-8 w-8 text-secondary" />
               </div>
               <div className="flex items-center pt-2">
-                <span className="text-sm text-muted-foreground">{instructorStats.coursesInDraft} in progress</span>
+                <span className="text-sm text-muted-foreground">
+                  {instructorStats.coursesInDraft} in progress
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -230,19 +264,26 @@ export default function InstructorDashboard() {
                     View Analytics
                   </Button>
                 </div>
-                <CardDescription>Manage your published courses and track their performance</CardDescription>
+                <CardDescription>
+                  Manage your published courses and track their performance
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {courses.map((course) => (
-                    <div key={course.id} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                    <div
+                      key={course.id}
+                      className="flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                    >
                       <div className="w-16 h-12 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
                         <Award className="w-6 h-6 text-primary" />
                       </div>
-                      
+
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold truncate">{course.title}</h3>
+                          <h3 className="font-semibold truncate">
+                            {course.title}
+                          </h3>
                           {getStatusBadge(course.status)}
                         </div>
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -257,8 +298,8 @@ export default function InstructorDashboard() {
                                 {course.rating} ({course.reviews})
                               </span>
                               <span className="flex items-center gap-1">
-                                <DollarSign className="w-4 h-4" />
-                                ${course.revenue.toLocaleString()}
+                                <DollarSign className="w-4 h-4" />$
+                                {course.revenue.toLocaleString()}
                               </span>
                             </>
                           )}
@@ -292,13 +333,17 @@ export default function InstructorDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Revenue Overview</CardTitle>
-                <CardDescription>Your earnings over the last 6 months</CardDescription>
+                <CardDescription>
+                  Your earnings over the last 6 months
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-64 bg-muted/30 rounded-lg flex items-center justify-center">
                   <div className="text-center">
                     <BarChart3 className="w-12 h-12 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-muted-foreground">Revenue chart will be displayed here</p>
+                    <p className="text-muted-foreground">
+                      Revenue chart will be displayed here
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -346,14 +391,26 @@ export default function InstructorDashboard() {
                   {recentActivity.map((activity, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        {activity.type === "new_student" && <Users className="w-4 h-4 text-primary" />}
-                        {activity.type === "review" && <Star className="w-4 h-4 text-yellow-500" />}
-                        {activity.type === "revenue" && <DollarSign className="w-4 h-4 text-green-500" />}
-                        {activity.type === "message" && <MessageCircle className="w-4 h-4 text-blue-500" />}
+                        {activity.type === "new_student" && (
+                          <Users className="w-4 h-4 text-primary" />
+                        )}
+                        {activity.type === "review" && (
+                          <Star className="w-4 h-4 text-yellow-500" />
+                        )}
+                        {activity.type === "revenue" && (
+                          <DollarSign className="w-4 h-4 text-green-500" />
+                        )}
+                        {activity.type === "message" && (
+                          <MessageCircle className="w-4 h-4 text-blue-500" />
+                        )}
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium">{activity.message}</p>
-                        <p className="text-xs text-muted-foreground">{activity.time}</p>
+                        <p className="text-sm font-medium">
+                          {activity.message}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {activity.time}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -373,17 +430,23 @@ export default function InstructorDashboard() {
                     <span>$8,200 / $10,000</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "82%" }}></div>
+                    <div
+                      className="bg-primary h-2 rounded-full"
+                      style={{ width: "82%" }}
+                    ></div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>New Students</span>
                     <span>34 / 50</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
-                    <div className="bg-accent h-2 rounded-full" style={{ width: "68%" }}></div>
+                    <div
+                      className="bg-accent h-2 rounded-full"
+                      style={{ width: "68%" }}
+                    ></div>
                   </div>
                 </div>
 
@@ -393,7 +456,10 @@ export default function InstructorDashboard() {
                     <span>1 / 2</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
-                    <div className="bg-secondary h-2 rounded-full" style={{ width: "50%" }}></div>
+                    <div
+                      className="bg-secondary h-2 rounded-full"
+                      style={{ width: "50%" }}
+                    ></div>
                   </div>
                 </div>
               </CardContent>
@@ -437,19 +503,20 @@ export default function InstructorDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800" 
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800"
                 alt="Gojo Martial Arts Logo"
                 className="w-10 h-10 object-contain"
                 style={{
-                  mixBlendMode: 'screen',
-                  filter: 'contrast(1.2) brightness(1.1)'
+                  mixBlendMode: "screen",
+                  filter: "contrast(1.2) brightness(1.1)",
                 }}
               />
               <span className="font-bold text-xl">Gojo</span>
             </div>
             <p className="text-secondary-foreground/80">
-              Master martial arts with the world's leading online training platform.
+              Master martial arts with the world's leading online training
+              platform.
             </p>
           </div>
         </div>

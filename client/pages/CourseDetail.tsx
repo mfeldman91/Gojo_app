@@ -1,22 +1,28 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Navigation } from "@/components/Navigation";
-import { 
-  Play, 
-  Clock, 
-  Users, 
-  Star, 
-  CheckCircle, 
+import {
+  Play,
+  Clock,
+  Users,
+  Star,
+  CheckCircle,
   Download,
   Share2,
   Bookmark,
   ChevronRight,
   Shield,
   Award,
-  Target
+  Target,
 } from "lucide-react";
 
 export default function CourseDetail() {
@@ -29,14 +35,15 @@ export default function CourseDetail() {
     students: 1247,
     duration: "3.5 hours",
     level: "Beginner",
-    description: "Master the fundamental techniques of boxing with this comprehensive course. Learn proper stance, footwork, and basic combinations that form the foundation of boxing.",
+    description:
+      "Master the fundamental techniques of boxing with this comprehensive course. Learn proper stance, footwork, and basic combinations that form the foundation of boxing.",
     whatYouLearn: [
       "Proper boxing stance and guard position",
-      "Basic footwork and movement patterns", 
+      "Basic footwork and movement patterns",
       "Fundamental punches: jab, cross, hook, uppercut",
       "Essential defensive techniques",
       "Basic combinations and timing",
-      "Shadow boxing fundamentals"
+      "Shadow boxing fundamentals",
     ],
     lessons: [
       { title: "Introduction to Boxing", duration: "12:34", isPreview: true },
@@ -48,23 +55,27 @@ export default function CourseDetail() {
       { title: "Basic Combinations", duration: "22:15", isPreview: false },
       { title: "Defensive Fundamentals", duration: "19:40", isPreview: false },
       { title: "Shadow Boxing Practice", duration: "25:30", isPreview: false },
-      { title: "Final Assessment", duration: "8:15", isPreview: false }
-    ]
+      { title: "Final Assessment", duration: "8:15", isPreview: false },
+    ],
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Course Header */}
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
           <div className="lg:col-span-2 space-y-6">
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Link to="/courses" className="hover:text-foreground">Courses</Link>
+              <Link to="/courses" className="hover:text-foreground">
+                Courses
+              </Link>
               <ChevronRight className="w-4 h-4" />
-              <Link to="/courses/boxing" className="hover:text-foreground">Boxing</Link>
+              <Link to="/courses/boxing" className="hover:text-foreground">
+                Boxing
+              </Link>
               <ChevronRight className="w-4 h-4" />
               <span className="text-foreground">Fundamentals</span>
             </div>
@@ -78,9 +89,13 @@ export default function CourseDetail() {
                 </Button>
               </div>
               <div className="absolute bottom-4 left-4 text-white">
-                <Badge className="bg-black/50 text-white border-0 mb-2">Preview Available</Badge>
+                <Badge className="bg-black/50 text-white border-0 mb-2">
+                  Preview Available
+                </Badge>
                 <h1 className="text-2xl font-bold">{course.title}</h1>
-                <p className="text-sm opacity-90">Learn the foundations of boxing</p>
+                <p className="text-sm opacity-90">
+                  Learn the foundations of boxing
+                </p>
               </div>
             </div>
 
@@ -91,7 +106,9 @@ export default function CourseDetail() {
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                   <span className="font-semibold">{course.rating}</span>
-                  <span className="text-muted-foreground">({course.students} students)</span>
+                  <span className="text-muted-foreground">
+                    ({course.students} students)
+                  </span>
                 </div>
                 <div className="flex items-center gap-1 text-muted-foreground">
                   <Clock className="w-4 h-4" />
@@ -99,16 +116,24 @@ export default function CourseDetail() {
                 </div>
               </div>
 
-              <p className="text-lg text-muted-foreground">{course.description}</p>
+              <p className="text-lg text-muted-foreground">
+                {course.description}
+              </p>
 
               {/* Instructor */}
               <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
                 <Avatar className="w-12 h-12">
-                  <AvatarFallback className="bg-primary text-primary-foreground">MC</AvatarFallback>
+                  <AvatarFallback className="bg-primary text-primary-foreground">
+                    MC
+                  </AvatarFallback>
                 </Avatar>
                 <div>
-                  <div className="font-semibold">Instructor: {course.instructor}</div>
-                  <div className="text-sm text-muted-foreground">Professional Boxing Coach • 15+ years experience</div>
+                  <div className="font-semibold">
+                    Instructor: {course.instructor}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    Professional Boxing Coach • 15+ years experience
+                  </div>
                 </div>
               </div>
             </div>
@@ -119,7 +144,9 @@ export default function CourseDetail() {
             <Card className="sticky top-4">
               <CardHeader>
                 <div className="text-3xl font-bold">${course.price}</div>
-                <CardDescription>One-time purchase • Lifetime access</CardDescription>
+                <CardDescription>
+                  One-time purchase • Lifetime access
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Button className="w-full" size="lg">
@@ -128,7 +155,7 @@ export default function CourseDetail() {
                 <Button variant="outline" className="w-full">
                   Add to Cart
                 </Button>
-                
+
                 <div className="text-center text-sm text-muted-foreground">
                   Or get this course included with{" "}
                   <Link to="/signup" className="text-primary hover:underline">
@@ -193,12 +220,18 @@ export default function CourseDetail() {
             <Card>
               <CardHeader>
                 <CardTitle>Course Content</CardTitle>
-                <CardDescription>{course.lessons.length} lessons • {course.duration} total length</CardDescription>
+                <CardDescription>
+                  {course.lessons.length} lessons • {course.duration} total
+                  length
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   {course.lessons.map((lesson, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 transition-colors">
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 transition-colors"
+                    >
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-sm font-semibold">
                           {index + 1}
@@ -206,12 +239,16 @@ export default function CourseDetail() {
                         <div>
                           <div className="font-medium">{lesson.title}</div>
                           {lesson.isPreview && (
-                            <Badge variant="secondary" className="text-xs">Preview</Badge>
+                            <Badge variant="secondary" className="text-xs">
+                              Preview
+                            </Badge>
                           )}
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-muted-foreground">{lesson.duration}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {lesson.duration}
+                        </span>
                         {lesson.isPreview ? (
                           <Button size="sm" variant="outline">
                             <Play className="w-4 h-4" />
@@ -237,11 +274,18 @@ export default function CourseDetail() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {[
-                  { title: "Advanced Boxing Techniques", price: 39, rating: 4.9 },
+                  {
+                    title: "Advanced Boxing Techniques",
+                    price: 39,
+                    rating: 4.9,
+                  },
                   { title: "Boxing Conditioning", price: 24, rating: 4.7 },
-                  { title: "Competition Boxing", price: 49, rating: 4.8 }
+                  { title: "Competition Boxing", price: 49, rating: 4.8 },
                 ].map((related, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
+                  >
                     <div className="w-12 h-8 bg-gradient-to-br from-primary to-accent rounded"></div>
                     <div className="flex-1">
                       <div className="font-medium text-sm">{related.title}</div>
@@ -268,19 +312,20 @@ export default function CourseDetail() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800" 
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800"
                 alt="Gojo Martial Arts Logo"
                 className="w-10 h-10 object-contain"
                 style={{
-                  mixBlendMode: 'screen',
-                  filter: 'contrast(1.2) brightness(1.1)'
+                  mixBlendMode: "screen",
+                  filter: "contrast(1.2) brightness(1.1)",
                 }}
               />
               <span className="font-bold text-xl">Gojo</span>
             </div>
             <p className="text-secondary-foreground/80">
-              Master martial arts with the world's leading online training platform.
+              Master martial arts with the world's leading online training
+              platform.
             </p>
           </div>
         </div>

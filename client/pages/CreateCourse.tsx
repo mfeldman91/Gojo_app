@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
-import { 
-  Upload, 
-  Plus, 
-  Trash2, 
-  Eye, 
-  Save, 
+import {
+  Upload,
+  Plus,
+  Trash2,
+  Eye,
+  Save,
   ArrowLeft,
   Video,
   Image,
@@ -20,7 +32,7 @@ import {
   Clock,
   Target,
   DollarSign,
-  Globe
+  Globe,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -34,34 +46,37 @@ export default function CreateCourse() {
     duration: "",
     whatYouLearn: [""],
     requirements: [""],
-    lessons: [{ title: "", duration: "", videoFile: null, resources: [] }]
+    lessons: [{ title: "", duration: "", videoFile: null, resources: [] }],
   });
 
   const addLearningPoint = () => {
-    setCourseData(prev => ({
+    setCourseData((prev) => ({
       ...prev,
-      whatYouLearn: [...prev.whatYouLearn, ""]
+      whatYouLearn: [...prev.whatYouLearn, ""],
     }));
   };
 
   const addRequirement = () => {
-    setCourseData(prev => ({
+    setCourseData((prev) => ({
       ...prev,
-      requirements: [...prev.requirements, ""]
+      requirements: [...prev.requirements, ""],
     }));
   };
 
   const addLesson = () => {
-    setCourseData(prev => ({
+    setCourseData((prev) => ({
       ...prev,
-      lessons: [...prev.lessons, { title: "", duration: "", videoFile: null, resources: [] }]
+      lessons: [
+        ...prev.lessons,
+        { title: "", duration: "", videoFile: null, resources: [] },
+      ],
     }));
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -72,10 +87,14 @@ export default function CreateCourse() {
                 Back to Dashboard
               </Link>
             </Button>
-            <h1 className="text-3xl font-bold text-foreground">Create New Course</h1>
+            <h1 className="text-3xl font-bold text-foreground">
+              Create New Course
+            </h1>
           </div>
           <p className="text-muted-foreground">
-            Share your martial arts expertise with students around the world. Create engaging video courses that help others master your techniques.
+            Share your martial arts expertise with students around the world.
+            Create engaging video courses that help others master your
+            techniques.
           </p>
         </div>
 
@@ -86,23 +105,35 @@ export default function CreateCourse() {
             <Card>
               <CardHeader>
                 <CardTitle>Course Information</CardTitle>
-                <CardDescription>Basic details about your martial arts course</CardDescription>
+                <CardDescription>
+                  Basic details about your martial arts course
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="title">Course Title *</Label>
-                  <Input 
+                  <Input
                     id="title"
                     placeholder="e.g., Wing Chun Fundamentals for Beginners"
                     value={courseData.title}
-                    onChange={(e) => setCourseData(prev => ({ ...prev, title: e.target.value }))}
+                    onChange={(e) =>
+                      setCourseData((prev) => ({
+                        ...prev,
+                        title: e.target.value,
+                      }))
+                    }
                   />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="category">Martial Arts Style *</Label>
-                    <Select value={courseData.category} onValueChange={(value) => setCourseData(prev => ({ ...prev, category: value }))}>
+                    <Select
+                      value={courseData.category}
+                      onValueChange={(value) =>
+                        setCourseData((prev) => ({ ...prev, category: value }))
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select martial art" />
                       </SelectTrigger>
@@ -114,8 +145,12 @@ export default function CreateCourse() {
                         <SelectItem value="taekwondo">Taekwondo</SelectItem>
                         <SelectItem value="bjj">Brazilian Jiu-Jitsu</SelectItem>
                         <SelectItem value="mma">Mixed Martial Arts</SelectItem>
-                        <SelectItem value="self-defense">Self-Defense</SelectItem>
-                        <SelectItem value="weapons">Weapons Training</SelectItem>
+                        <SelectItem value="self-defense">
+                          Self-Defense
+                        </SelectItem>
+                        <SelectItem value="weapons">
+                          Weapons Training
+                        </SelectItem>
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
@@ -123,13 +158,20 @@ export default function CreateCourse() {
 
                   <div className="space-y-2">
                     <Label htmlFor="level">Difficulty Level *</Label>
-                    <Select value={courseData.level} onValueChange={(value) => setCourseData(prev => ({ ...prev, level: value }))}>
+                    <Select
+                      value={courseData.level}
+                      onValueChange={(value) =>
+                        setCourseData((prev) => ({ ...prev, level: value }))
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select level" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="beginner">Beginner</SelectItem>
-                        <SelectItem value="intermediate">Intermediate</SelectItem>
+                        <SelectItem value="intermediate">
+                          Intermediate
+                        </SelectItem>
                         <SelectItem value="advanced">Advanced</SelectItem>
                         <SelectItem value="all-levels">All Levels</SelectItem>
                       </SelectContent>
@@ -139,12 +181,17 @@ export default function CreateCourse() {
 
                 <div className="space-y-2">
                   <Label htmlFor="description">Course Description *</Label>
-                  <Textarea 
+                  <Textarea
                     id="description"
                     placeholder="Describe what students will learn in this course. Be specific about techniques, benefits, and outcomes."
                     className="min-h-[120px]"
                     value={courseData.description}
-                    onChange={(e) => setCourseData(prev => ({ ...prev, description: e.target.value }))}
+                    onChange={(e) =>
+                      setCourseData((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
                   />
                 </div>
 
@@ -153,13 +200,18 @@ export default function CreateCourse() {
                     <Label htmlFor="price">Course Price (USD) *</Label>
                     <div className="relative">
                       <DollarSign className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
-                      <Input 
+                      <Input
                         id="price"
                         type="number"
                         placeholder="29"
                         className="pl-10"
                         value={courseData.price}
-                        onChange={(e) => setCourseData(prev => ({ ...prev, price: e.target.value }))}
+                        onChange={(e) =>
+                          setCourseData((prev) => ({
+                            ...prev,
+                            price: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                   </div>
@@ -168,12 +220,17 @@ export default function CreateCourse() {
                     <Label htmlFor="duration">Total Duration</Label>
                     <div className="relative">
                       <Clock className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
-                      <Input 
+                      <Input
                         id="duration"
                         placeholder="3.5 hours"
                         className="pl-10"
                         value={courseData.duration}
-                        onChange={(e) => setCourseData(prev => ({ ...prev, duration: e.target.value }))}
+                        onChange={(e) =>
+                          setCourseData((prev) => ({
+                            ...prev,
+                            duration: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                   </div>
@@ -185,7 +242,9 @@ export default function CreateCourse() {
             <Card>
               <CardHeader>
                 <CardTitle>Course Content</CardTitle>
-                <CardDescription>Add lessons and structure your course curriculum</CardDescription>
+                <CardDescription>
+                  Add lessons and structure your course curriculum
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {courseData.lessons.map((lesson, index) => (
@@ -215,8 +274,12 @@ export default function CreateCourse() {
                       <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center">
                         <Video className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                         <div className="space-y-2">
-                          <p className="text-sm font-medium">Upload lesson video</p>
-                          <p className="text-xs text-muted-foreground">MP4, MOV up to 2GB. Recommended: 1080p, 30fps</p>
+                          <p className="text-sm font-medium">
+                            Upload lesson video
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            MP4, MOV up to 2GB. Recommended: 1080p, 30fps
+                          </p>
                           <Button variant="outline" size="sm">
                             <Upload className="w-4 h-4 mr-2" />
                             Choose File
@@ -230,7 +293,9 @@ export default function CreateCourse() {
                       <div className="border border-muted rounded-lg p-4">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                           <File className="w-4 h-4" />
-                          <span>Upload PDFs, images, or other learning materials</span>
+                          <span>
+                            Upload PDFs, images, or other learning materials
+                          </span>
                         </div>
                         <Button variant="outline" size="sm">
                           <Plus className="w-4 h-4 mr-2" />
@@ -241,7 +306,11 @@ export default function CreateCourse() {
                   </div>
                 ))}
 
-                <Button variant="outline" onClick={addLesson} className="w-full">
+                <Button
+                  variant="outline"
+                  onClick={addLesson}
+                  className="w-full"
+                >
                   <Plus className="w-4 h-4 mr-2" />
                   Add Another Lesson
                 </Button>
@@ -252,19 +321,24 @@ export default function CreateCourse() {
             <Card>
               <CardHeader>
                 <CardTitle>What Students Will Learn</CardTitle>
-                <CardDescription>List the key skills and knowledge students will gain</CardDescription>
+                <CardDescription>
+                  List the key skills and knowledge students will gain
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {courseData.whatYouLearn.map((point, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <Target className="w-5 h-5 text-primary flex-shrink-0" />
-                    <Input 
+                    <Input
                       placeholder="e.g., Master the basic boxing stance and guard position"
                       value={point}
                       onChange={(e) => {
                         const newPoints = [...courseData.whatYouLearn];
                         newPoints[index] = e.target.value;
-                        setCourseData(prev => ({ ...prev, whatYouLearn: newPoints }));
+                        setCourseData((prev) => ({
+                          ...prev,
+                          whatYouLearn: newPoints,
+                        }));
                       }}
                     />
                     {courseData.whatYouLearn.length > 1 && (
@@ -288,16 +362,20 @@ export default function CreateCourse() {
             <Card>
               <CardHeader>
                 <CardTitle>Course Preview</CardTitle>
-                <CardDescription>How your course will appear to students</CardDescription>
+                <CardDescription>
+                  How your course will appear to students
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
                   <div className="text-center">
                     <Image className="w-12 h-12 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground">Course Thumbnail</p>
+                    <p className="text-sm text-muted-foreground">
+                      Course Thumbnail
+                    </p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <h3 className="font-semibold">
                     {courseData.title || "Course Title"}
@@ -306,11 +384,14 @@ export default function CreateCourse() {
                     <Badge variant="secondary">{courseData.level}</Badge>
                   )}
                   <p className="text-sm text-muted-foreground">
-                    {courseData.description || "Course description will appear here..."}
+                    {courseData.description ||
+                      "Course description will appear here..."}
                   </p>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Price:</span>
-                    <span className="font-bold">${courseData.price || "0"}</span>
+                    <span className="font-bold">
+                      ${courseData.price || "0"}
+                    </span>
                   </div>
                 </div>
 
@@ -361,7 +442,8 @@ export default function CreateCourse() {
                 </div>
 
                 <div className="text-xs text-muted-foreground p-3 bg-muted/50 rounded-lg">
-                  <strong>Note:</strong> All courses must be reviewed by our team before being published. This typically takes 24-48 hours.
+                  <strong>Note:</strong> All courses must be reviewed by our
+                  team before being published. This typically takes 24-48 hours.
                 </div>
               </CardContent>
             </Card>
@@ -374,19 +456,31 @@ export default function CreateCourse() {
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-start gap-2">
                   <Target className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <span>Use clear, descriptive titles that include the martial art and skill level</span>
+                  <span>
+                    Use clear, descriptive titles that include the martial art
+                    and skill level
+                  </span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Video className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <span>Record in good lighting with clear audio. Show techniques from multiple angles</span>
+                  <span>
+                    Record in good lighting with clear audio. Show techniques
+                    from multiple angles
+                  </span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Clock className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <span>Break lessons into 10-20 minute segments for better engagement</span>
+                  <span>
+                    Break lessons into 10-20 minute segments for better
+                    engagement
+                  </span>
                 </div>
                 <div className="flex items-start gap-2">
                   <DollarSign className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <span>Research similar courses to price competitively. Beginner courses: $19-39</span>
+                  <span>
+                    Research similar courses to price competitively. Beginner
+                    courses: $19-39
+                  </span>
                 </div>
               </CardContent>
             </Card>
@@ -399,19 +493,20 @@ export default function CreateCourse() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800" 
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800"
                 alt="Gojo Martial Arts Logo"
                 className="w-10 h-10 object-contain"
                 style={{
-                  mixBlendMode: 'screen',
-                  filter: 'contrast(1.2) brightness(1.1)'
+                  mixBlendMode: "screen",
+                  filter: "contrast(1.2) brightness(1.1)",
                 }}
               />
               <span className="font-bold text-xl">Gojo</span>
             </div>
             <p className="text-secondary-foreground/80">
-              Master martial arts with the world's leading online training platform.
+              Master martial arts with the world's leading online training
+              platform.
             </p>
           </div>
         </div>

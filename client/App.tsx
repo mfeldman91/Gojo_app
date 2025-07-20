@@ -29,7 +29,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-                                <Routes>
+        <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/course/:id" element={<CourseDetail />} />
@@ -41,7 +41,10 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/community" element={<Community />} />
           <Route path="/instructor/profile" element={<InstructorProfile />} />
-          <Route path="/instructor/dashboard" element={<InstructorDashboard />} />
+          <Route
+            path="/instructor/dashboard"
+            element={<InstructorDashboard />}
+          />
           <Route path="/instructor/create-course" element={<CreateCourse />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
