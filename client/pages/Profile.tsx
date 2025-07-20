@@ -20,9 +20,12 @@ import {
   Share2,
   Plus,
   Target,
-  Clock,
+    Clock,
   Award,
   BookOpen,
+  CreditCard,
+  DollarSign,
+  Edit
 } from "lucide-react";
 import { useState } from "react";
 
