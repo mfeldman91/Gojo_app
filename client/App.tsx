@@ -17,6 +17,9 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Community from "./pages/Community";
 import CourseDetail from "./pages/CourseDetail";
+import InstructorProfile from "./pages/InstructorProfile";
+import InstructorDashboard from "./pages/InstructorDashboard";
+import CreateCourse from "./pages/CreateCourse";
 
 const queryClient = new QueryClient();
 
