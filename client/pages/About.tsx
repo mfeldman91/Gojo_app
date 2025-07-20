@@ -184,6 +184,134 @@ export default function About() {
           </div>
         </div>
 
+                {/* Affordability & Convenience */}
+        <div className="bg-gradient-to-r from-accent/10 to-primary/10 rounded-3xl p-8 lg:p-12 mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Affordable. Convenient. Effective.</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Get in shape and master martial arts without breaking the bank or your schedule
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            <Card className="text-center border-0 bg-background/50">
+              <CardContent className="p-8">
+                <DollarSign className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="font-bold text-xl mb-4">Incredibly Affordable</h3>
+                <div className="space-y-3 text-muted-foreground">
+                  <p>Traditional martial arts classes: <span className="line-through">$150-300/month</span></p>
+                  <p>Personal trainer: <span className="line-through">$80-150/session</span></p>
+                  <p className="text-primary font-bold text-lg">Gojo All-Access: $39/month</p>
+                  <p className="text-sm">Or individual courses from just $19</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border-0 bg-background/50">
+              <CardContent className="p-8">
+                <Clock className="w-12 h-12 text-accent mx-auto mb-4" />
+                <h3 className="font-bold text-xl mb-4">Ultimate Convenience</h3>
+                <div className="space-y-2 text-muted-foreground">
+                  <p>• Train anytime, anywhere</p>
+                  <p>• No commute to the gym</p>
+                  <p>• Learn at your own pace</p>
+                  <p>• Pause and replay techniques</p>
+                  <p>• Available on all devices</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border-0 bg-background/50">
+              <CardContent className="p-8">
+                <Target className="w-12 h-12 text-secondary mx-auto mb-4" />
+                <h3 className="font-bold text-xl mb-4">Get in Amazing Shape</h3>
+                <div className="space-y-2 text-muted-foreground">
+                  <p>• Full-body workouts</p>
+                  <p>• Improve flexibility & coordination</p>
+                  <p>• Build strength & endurance</p>
+                  <p>• Burn calories while learning</p>
+                  <p>• Stress relief & mental focus</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Platform Features */}
+        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+          <Card className="border-primary/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-2xl">
+                <BookOpen className="w-6 h-6 text-primary" />
+                Comprehensive Courses
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-muted-foreground">
+                Our course library features structured learning paths for every martial art,
+                from complete beginner fundamentals to advanced master techniques.
+              </p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-sm">500+ HD video lessons</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-sm">Beginner to advanced levels</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-sm">Downloadable resources</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-sm">Progress tracking</span>
+                </div>
+              </div>
+              <Button className="w-full" asChild>
+                <Link to="/courses">Explore All Courses</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="border-accent/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-2xl">
+                <Users className="w-6 h-6 text-accent" />
+                Vibrant Community
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-muted-foreground">
+                Connect with fellow martial artists, share your progress, get motivated,
+                and learn from others on the same journey.
+              </p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent" />
+                  <span className="text-sm">Progress sharing & challenges</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent" />
+                  <span className="text-sm">Expert instructor feedback</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent" />
+                  <span className="text-sm">Live Q&A sessions</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent" />
+                  <span className="text-sm">Global martial arts network</span>
+                </div>
+              </div>
+              <Button variant="outline" className="w-full" asChild>
+                <Link to="/community">Join the Community</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Platform Impact */}
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-foreground mb-8">Platform Impact</h2>
