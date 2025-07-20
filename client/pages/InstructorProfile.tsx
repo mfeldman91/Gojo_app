@@ -372,7 +372,7 @@ export default function InstructorProfile() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">Response Time</span>
-                  <span className="font-semibold">< 2 hours</span>
+                                    <span className="font-semibold">&lt; 2 hours</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">Gojo Ranking</span>
