@@ -12,10 +12,14 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
                     {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <img
+                        <img
               src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800"
               alt="Gojo Martial Arts Logo"
               className="w-10 h-10 object-contain"
+              style={{
+                mixBlendMode: 'screen',
+                filter: 'contrast(1.2) brightness(1.1)'
+              }}
             />
             <span className="font-bold text-xl text-foreground">Gojo</span>
           </Link>
