@@ -37,8 +37,11 @@ export function Navigation() {
             </Link>
           </div>
 
-                    {/* Desktop Auth Buttons */}
+                              {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/instructor/dashboard">Teach on Gojo</Link>
+            </Button>
             <Button variant="ghost" asChild>
               <Link to="/profile">My Profile</Link>
             </Button>
