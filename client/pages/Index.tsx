@@ -13,9 +13,11 @@ import {
   Star,
   CheckCircle,
   Zap,
-  Video,
+    Video,
   BookOpen,
-  Award
+  Award,
+  DollarSign,
+  Eye
 } from "lucide-react";
 
 export default function Index() {
