@@ -64,8 +64,8 @@ export default function Index() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-8" asChild>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8" asChild>
                   <Link to="/signup">
                     <Play className="w-5 h-5 mr-2" />
                     Start Training Now
