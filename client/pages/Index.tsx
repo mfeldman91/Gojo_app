@@ -34,7 +34,7 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5"></div>
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -53,7 +53,7 @@ export default function Index() {
                     #1 Martial Arts Training Platform
                   </Badge>
                 </div>
-                                <h1 className="text-2xl sm:text-3xl lg:text-6xl font-bold text-foreground leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-6xl font-bold text-foreground leading-tight">
                   Master Martial Arts with
                   <span className="text-primary"> Gojo</span>
                 </h1>
@@ -64,14 +64,18 @@ export default function Index() {
                 </p>
               </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8" asChild>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  className="text-base sm:text-lg px-6 sm:px-8"
+                  asChild
+                >
                   <Link to="/signup">
                     <Play className="w-5 h-5 mr-2" />
                     Start Training Now
                   </Link>
                 </Button>
-                                <Button
+                <Button
                   size="lg"
                   variant="outline"
                   className="text-base sm:text-lg px-6 sm:px-8"
@@ -163,11 +167,11 @@ export default function Index() {
         </div>
       </section>
 
-            {/* Features Section */}
+      {/* Features Section */}
       <section className="py-12 sm:py-16 lg:py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-                        <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-foreground">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-foreground">
               Why Choose Gojo?
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
