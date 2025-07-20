@@ -37,8 +37,11 @@ export function Navigation() {
             </Link>
           </div>
 
-          {/* Desktop Auth Buttons */}
+                    {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <Button variant="ghost" asChild>
+              <Link to="/profile">My Profile</Link>
+            </Button>
             <Button variant="ghost" asChild>
               <Link to="/login">Log In</Link>
             </Button>
