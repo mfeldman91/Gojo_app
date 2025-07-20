@@ -60,7 +60,7 @@ export function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border mt-4">
-              <Link
+                            <Link
                 to="/courses"
                 className="block px-3 py-2 text-base font-medium text-foreground/80 hover:text-foreground"
                 onClick={() => setIsMenuOpen(false)}
@@ -68,18 +68,11 @@ export function Navigation() {
                 Courses
               </Link>
               <Link
-                to="/styles"
+                to="/community"
                 className="block px-3 py-2 text-base font-medium text-foreground/80 hover:text-foreground"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Martial Arts
-              </Link>
-              <Link
-                to="/pricing"
-                className="block px-3 py-2 text-base font-medium text-foreground/80 hover:text-foreground"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Pricing
+                Community
               </Link>
               <Link
                 to="/about"
