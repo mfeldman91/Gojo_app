@@ -347,8 +347,36 @@ export default function Profile() {
                     ></div>
                   </div>
                 </div>
-                <Button variant="outline" size="sm" className="w-full">
+                                <Button variant="outline" size="sm" className="w-full">
                   Set New Goals
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Account Management */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CreditCard className="w-5 h-5" />
+                  Account
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button className="w-full" asChild>
+                  <Link to="/billing">
+                    <DollarSign className="w-4 h-4 mr-2" />
+                    Billing & Payments
+                  </Link>
+                </Button>
+                <Button variant="outline" className="w-full" asChild>
+                  <Link to="/instructor/dashboard">
+                    <Award className="w-4 h-4 mr-2" />
+                    Become Instructor
+                  </Link>
+                </Button>
+                <Button variant="outline" className="w-full">
+                  <Edit className="w-4 h-4 mr-2" />
+                  Edit Profile
                 </Button>
               </CardContent>
             </Card>
