@@ -31,10 +31,14 @@ export default function Index() {
             <div className="space-y-8">
               <div className="space-y-4">
                                 <div className="flex items-center gap-4">
-                  <img
+                                    <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800"
                     alt="Gojo Martial Arts Logo"
                     className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
+                    style={{
+                      mixBlendMode: 'screen',
+                      filter: 'contrast(1.2) brightness(1.1)'
+                    }}
                   />
                   <Badge variant="secondary" className="w-fit">
                     <Trophy className="w-4 h-4 mr-2" />
