@@ -50,7 +50,7 @@ export default function Index() {
                   <span className="text-primary"> Gojo</span>
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-lg">
-                  Learn boxing, Muay Thai, jujutsu, karate, and self-defense from elite instructors. 
+                  Buy individual courses or get unlimited access with our monthly subscription. 
                   Access premium video courses and train at your own pace.
                 </p>
               </div>
