@@ -298,32 +298,33 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+            {/* Pricing Section */}
       <section className="py-20 lg:py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-              Choose Your Training Plan
+              Simple, Flexible Training
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Flexible pricing options to fit your training goals and budget.
+              Buy individual courses or get unlimited access with a monthly subscription.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Card className="relative">
               <CardHeader>
-                <CardTitle className="text-2xl">Basic</CardTitle>
-                <div className="text-3xl font-bold">$29<span className="text-lg font-normal text-muted-foreground">/month</span></div>
-                <CardDescription>Perfect for beginners getting started</CardDescription>
+                <CardTitle className="text-2xl">Individual Courses</CardTitle>
+                <div className="text-3xl font-bold">$19-49<span className="text-lg font-normal text-muted-foreground"> per course</span></div>
+                <CardDescription>Perfect for focused learning on specific techniques</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   {[
-                    "Access to 2 martial arts styles",
-                    "Basic video courses",
-                    "Mobile app access",
-                    "Community forum"
+                    "Lifetime access to purchased courses",
+                    "HD video content",
+                    "Downloadable resources",
+                    "Course completion certificates",
+                    "Community access for that course"
                   ].map((feature, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <CheckCircle className="w-5 h-5 text-primary" />
@@ -331,28 +332,30 @@ export default function Index() {
                     </div>
                   ))}
                 </div>
-                <Button className="w-full" variant="outline">Get Started</Button>
+                <Button className="w-full" variant="outline" asChild>
+                  <Link to="/courses">Browse Courses</Link>
+                </Button>
               </CardContent>
             </Card>
 
-            <Card className="relative border-primary shadow-lg scale-105">
+            <Card className="relative border-primary shadow-lg">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
+                <Badge className="bg-primary text-primary-foreground">Best Value</Badge>
               </div>
               <CardHeader>
-                <CardTitle className="text-2xl">Pro</CardTitle>
-                <div className="text-3xl font-bold">$59<span className="text-lg font-normal text-muted-foreground">/month</span></div>
-                <CardDescription>For serious martial artists</CardDescription>
+                <CardTitle className="text-2xl">All-Access Pass</CardTitle>
+                <div className="text-3xl font-bold">$39<span className="text-lg font-normal text-muted-foreground">/month</span></div>
+                <CardDescription>Unlimited access to all courses and features</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   {[
-                    "Access to all martial arts styles",
-                    "HD & 4K video courses",
-                    "Personalized training plans",
-                    "Live instructor sessions",
+                    "Access to ALL martial arts courses",
+                    "New courses added monthly",
                     "Progress tracking & analytics",
-                    "Priority support"
+                    "Community forums & challenges",
+                    "Live Q&A sessions with instructors",
+                    "Mobile app access"
                   ].map((feature, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <CheckCircle className="w-5 h-5 text-primary" />
@@ -360,33 +363,9 @@ export default function Index() {
                     </div>
                   ))}
                 </div>
-                <Button className="w-full">Start Pro Trial</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="relative">
-              <CardHeader>
-                <CardTitle className="text-2xl">Elite</CardTitle>
-                <div className="text-3xl font-bold">$99<span className="text-lg font-normal text-muted-foreground">/month</span></div>
-                <CardDescription>Ultimate training experience</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  {[
-                    "Everything in Pro",
-                    "1-on-1 virtual coaching",
-                    "Custom training programs",
-                    "Competition preparation",
-                    "Exclusive masterclasses",
-                    "Certification programs"
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-primary" />
-                      <span className="text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button className="w-full" variant="outline">Contact Sales</Button>
+                <Button className="w-full" asChild>
+                  <Link to="/signup">Start Free Trial</Link>
+                </Button>
               </CardContent>
             </Card>
           </div>
