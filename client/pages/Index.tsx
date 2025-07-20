@@ -53,11 +53,11 @@ export default function Index() {
                     #1 Martial Arts Training Platform
                   </Badge>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+                                <h1 className="text-2xl sm:text-3xl lg:text-6xl font-bold text-foreground leading-tight">
                   Master Martial Arts with
                   <span className="text-primary"> Gojo</span>
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-lg">
+                <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-lg">
                   Buy individual courses or get unlimited access with our
                   monthly subscription. Learn from elite instructors and share
                   your progress with the community.
