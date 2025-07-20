@@ -24,16 +24,13 @@ export function Navigation() {
             <span className="font-bold text-xl text-foreground">Gojo</span>
           </Link>
 
-          {/* Desktop Navigation */}
+                    {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/courses" className="text-foreground/80 hover:text-foreground transition-colors">
               Courses
             </Link>
-            <Link to="/styles" className="text-foreground/80 hover:text-foreground transition-colors">
-              Martial Arts
-            </Link>
-            <Link to="/pricing" className="text-foreground/80 hover:text-foreground transition-colors">
-              Pricing
+            <Link to="/community" className="text-foreground/80 hover:text-foreground transition-colors">
+              Community
             </Link>
             <Link to="/about" className="text-foreground/80 hover:text-foreground transition-colors">
               About
