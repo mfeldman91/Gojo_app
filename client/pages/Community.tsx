@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
 import { Navigation } from "@/components/Navigation";
-import { 
-  Users, 
-  MessageCircle, 
-  Heart, 
-  Share2, 
+import {
+  Users,
+  MessageCircle,
+  Heart,
+  Share2,
   Trophy,
   Target,
   Calendar,
@@ -21,7 +27,7 @@ import {
   Clock,
   Star,
   CheckCircle,
-  Zap
+  Zap,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -36,25 +42,27 @@ export default function Community() {
       avatar: "SC",
       level: "Intermediate",
       style: "Wing Chun",
-      content: "Just hit my 100-day training streak! 🥋 The consistency has really paid off - my chi sau sensitivity has improved dramatically. Thanks to Master Chen's course for the incredible instruction!",
+      content:
+        "Just hit my 100-day training streak! 🥋 The consistency has really paid off - my chi sau sensitivity has improved dramatically. Thanks to Master Chen's course for the incredible instruction!",
       likes: 47,
       comments: 12,
       timeAgo: "2 hours ago",
       image: true,
-      featured: true
+      featured: true,
     },
     {
       id: 2,
       user: "Miguel Rodriguez",
-      avatar: "MR", 
+      avatar: "MR",
       level: "Beginner",
       style: "Boxing",
-      content: "First time landing a clean 1-2-3 combo during sparring practice! My coach says my footwork has improved so much since starting the Boxing Fundamentals course. Feeling motivated! 💪",
+      content:
+        "First time landing a clean 1-2-3 combo during sparring practice! My coach says my footwork has improved so much since starting the Boxing Fundamentals course. Feeling motivated! 💪",
       likes: 33,
       comments: 8,
       timeAgo: "4 hours ago",
       image: false,
-      featured: true
+      featured: true,
     },
     {
       id: 3,
@@ -62,13 +70,14 @@ export default function Community() {
       avatar: "ET",
       level: "Advanced",
       style: "Muay Thai",
-      content: "Teaching my first class tomorrow! From student to instructor thanks to the confidence I built through Gojo's comprehensive Muay Thai program. Never thought I'd be here 2 years ago.",
+      content:
+        "Teaching my first class tomorrow! From student to instructor thanks to the confidence I built through Gojo's comprehensive Muay Thai program. Never thought I'd be here 2 years ago.",
       likes: 89,
       comments: 23,
       timeAgo: "6 hours ago",
       image: true,
-      featured: true
-    }
+      featured: true,
+    },
   ];
 
   const recentPosts = [
@@ -78,11 +87,12 @@ export default function Community() {
       avatar: "DP",
       level: "Beginner",
       style: "Karate",
-      content: "Week 3 of karate training. Still struggling with balance in my kicks but getting better every day. Any tips for improving stability?",
+      content:
+        "Week 3 of karate training. Still struggling with balance in my kicks but getting better every day. Any tips for improving stability?",
       likes: 15,
       comments: 6,
       timeAgo: "1 day ago",
-      image: false
+      image: false,
     },
     {
       id: 5,
@@ -90,11 +100,12 @@ export default function Community() {
       avatar: "LJ",
       level: "Intermediate",
       style: "BJJ",
-      content: "Finally got my first submission in rolling today! The armbar technique from Professor Silva's course worked perfectly. So grateful for this community's support! 🙏",
+      content:
+        "Finally got my first submission in rolling today! The armbar technique from Professor Silva's course worked perfectly. So grateful for this community's support! 🙏",
       likes: 52,
       comments: 14,
       timeAgo: "1 day ago",
-      image: false
+      image: false,
     },
     {
       id: 6,
@@ -102,12 +113,13 @@ export default function Community() {
       avatar: "AK",
       level: "Advanced",
       style: "MMA",
-      content: "Competed in my first amateur MMA fight and won by submission! All those hours of training through Gojo paid off. Thank you to everyone who supported me!",
+      content:
+        "Competed in my first amateur MMA fight and won by submission! All those hours of training through Gojo paid off. Thank you to everyone who supported me!",
       likes: 127,
       comments: 31,
       timeAgo: "2 days ago",
-      image: true
-    }
+      image: true,
+    },
   ];
 
   const challenges = [
@@ -117,7 +129,7 @@ export default function Community() {
       description: "Practice one new technique every day for 30 days",
       participants: 1247,
       daysLeft: 12,
-      difficulty: "Beginner"
+      difficulty: "Beginner",
     },
     {
       id: 2,
@@ -125,7 +137,7 @@ export default function Community() {
       description: "Improve your flexibility with daily stretching routines",
       participants: 856,
       daysLeft: 18,
-      difficulty: "All Levels"
+      difficulty: "All Levels",
     },
     {
       id: 3,
@@ -133,8 +145,8 @@ export default function Community() {
       description: "Master traditional martial arts forms and kata",
       participants: 543,
       daysLeft: 25,
-      difficulty: "Intermediate"
-    }
+      difficulty: "Intermediate",
+    },
   ];
 
   const topInstructors = [
@@ -143,28 +155,28 @@ export default function Community() {
       style: "Wing Chun",
       rating: 4.9,
       students: 2847,
-      avatar: "CW"
+      avatar: "CW",
     },
     {
-      name: "Coach Mike Rodriguez", 
+      name: "Coach Mike Rodriguez",
       style: "Boxing",
       rating: 4.8,
       students: 3241,
-      avatar: "MR"
+      avatar: "MR",
     },
     {
       name: "Sensei Maria Santos",
       style: "Self-Defense",
       rating: 4.9,
       students: 4521,
-      avatar: "MS"
-    }
+      avatar: "MS",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center space-y-4 mb-12">
@@ -172,8 +184,9 @@ export default function Community() {
             Join the Gojo Community
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Connect with fellow martial artists, share your progress, get motivated, and learn from each other. 
-            Over 10,000 students training together worldwide.
+            Connect with fellow martial artists, share your progress, get
+            motivated, and learn from each other. Over 10,000 students training
+            together worldwide.
           </p>
         </div>
 
@@ -212,11 +225,12 @@ export default function Community() {
                   Share Your Progress
                 </CardTitle>
                 <CardDescription>
-                  Tell the community about your training, achievements, or challenges
+                  Tell the community about your training, achievements, or
+                  challenges
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Textarea 
+                <Textarea
                   placeholder="What did you train today? Share your progress, achievements, or ask for advice..."
                   value={newPost}
                   onChange={(e) => setNewPost(e.target.value)}
@@ -233,9 +247,7 @@ export default function Community() {
                       Tag Technique
                     </Button>
                   </div>
-                  <Button disabled={!newPost.trim()}>
-                    Share Post
-                  </Button>
+                  <Button disabled={!newPost.trim()}>Share Post</Button>
                 </div>
               </CardContent>
             </Card>
@@ -246,7 +258,7 @@ export default function Community() {
                 <TrendingUp className="w-6 h-6 text-primary" />
                 Featured Community Posts
               </h2>
-              
+
               {featuredPosts.map((post) => (
                 <Card key={post.id} className="relative">
                   {post.featured && (
@@ -264,33 +276,53 @@ export default function Community() {
                           {post.avatar}
                         </AvatarFallback>
                       </Avatar>
-                      
+
                       <div className="flex-1 space-y-3">
                         <div className="flex items-center gap-2">
                           <span className="font-semibold">{post.user}</span>
-                          <Badge variant="secondary" className="text-xs">{post.level}</Badge>
-                          <Badge variant="outline" className="text-xs">{post.style}</Badge>
-                          <span className="text-sm text-muted-foreground">{post.timeAgo}</span>
+                          <Badge variant="secondary" className="text-xs">
+                            {post.level}
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {post.style}
+                          </Badge>
+                          <span className="text-sm text-muted-foreground">
+                            {post.timeAgo}
+                          </span>
                         </div>
-                        
-                        <p className="text-foreground leading-relaxed">{post.content}</p>
-                        
+
+                        <p className="text-foreground leading-relaxed">
+                          {post.content}
+                        </p>
+
                         {post.image && (
                           <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
                             <Camera className="w-12 h-12 text-muted-foreground" />
                           </div>
                         )}
-                        
+
                         <div className="flex items-center gap-4 pt-2">
-                          <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2"
+                          >
                             <Heart className="w-4 h-4 mr-1" />
                             {post.likes}
                           </Button>
-                          <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2"
+                          >
                             <MessageCircle className="w-4 h-4 mr-1" />
                             {post.comments}
                           </Button>
-                          <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2"
+                          >
                             <Share2 className="w-4 h-4 mr-1" />
                             Share
                           </Button>
@@ -308,7 +340,7 @@ export default function Community() {
                 <Clock className="w-6 h-6 text-accent" />
                 Recent Activity
               </h2>
-              
+
               {recentPosts.map((post) => (
                 <Card key={post.id}>
                   <CardContent className="pt-6">
@@ -318,33 +350,51 @@ export default function Community() {
                           {post.avatar}
                         </AvatarFallback>
                       </Avatar>
-                      
+
                       <div className="flex-1 space-y-3">
                         <div className="flex items-center gap-2">
                           <span className="font-semibold">{post.user}</span>
-                          <Badge variant="secondary" className="text-xs">{post.level}</Badge>
-                          <Badge variant="outline" className="text-xs">{post.style}</Badge>
-                          <span className="text-sm text-muted-foreground">{post.timeAgo}</span>
+                          <Badge variant="secondary" className="text-xs">
+                            {post.level}
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {post.style}
+                          </Badge>
+                          <span className="text-sm text-muted-foreground">
+                            {post.timeAgo}
+                          </span>
                         </div>
-                        
+
                         <p className="text-foreground">{post.content}</p>
-                        
+
                         {post.image && (
                           <div className="aspect-video bg-gradient-to-br from-accent/20 to-secondary/20 rounded-lg flex items-center justify-center">
                             <Camera className="w-8 h-8 text-muted-foreground" />
                           </div>
                         )}
-                        
+
                         <div className="flex items-center gap-4 pt-2">
-                          <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2"
+                          >
                             <Heart className="w-4 h-4 mr-1" />
                             {post.likes}
                           </Button>
-                          <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2"
+                          >
                             <MessageCircle className="w-4 h-4 mr-1" />
                             {post.comments}
                           </Button>
-                          <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2"
+                          >
                             <Share2 className="w-4 h-4 mr-1" />
                             Share
                           </Button>
@@ -366,17 +416,26 @@ export default function Community() {
                   <Trophy className="w-5 h-5" />
                   Active Challenges
                 </CardTitle>
-                <CardDescription>Join community challenges and achieve your goals</CardDescription>
+                <CardDescription>
+                  Join community challenges and achieve your goals
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {challenges.map((challenge) => (
-                  <div key={challenge.id} className="p-4 border rounded-lg space-y-3">
+                  <div
+                    key={challenge.id}
+                    className="p-4 border rounded-lg space-y-3"
+                  >
                     <div>
                       <h4 className="font-semibold">{challenge.title}</h4>
-                      <p className="text-sm text-muted-foreground">{challenge.description}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {challenge.description}
+                      </p>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span>{challenge.participants.toLocaleString()} participants</span>
+                      <span>
+                        {challenge.participants.toLocaleString()} participants
+                      </span>
                       <Badge variant="secondary">{challenge.difficulty}</Badge>
                     </div>
                     <div className="text-sm text-muted-foreground">
@@ -401,11 +460,16 @@ export default function Community() {
                   <Award className="w-5 h-5" />
                   Featured Instructors
                 </CardTitle>
-                <CardDescription>Connect with our top-rated instructors</CardDescription>
+                <CardDescription>
+                  Connect with our top-rated instructors
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {topInstructors.map((instructor, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
+                  >
                     <Avatar className="w-12 h-12">
                       <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white">
                         {instructor.avatar}
@@ -413,12 +477,16 @@ export default function Community() {
                     </Avatar>
                     <div className="flex-1">
                       <div className="font-semibold">{instructor.name}</div>
-                      <div className="text-sm text-muted-foreground">{instructor.style}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {instructor.style}
+                      </div>
                       <div className="flex items-center gap-2 text-xs">
                         <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                         <span>{instructor.rating}</span>
                         <span>•</span>
-                        <span>{instructor.students.toLocaleString()} students</span>
+                        <span>
+                          {instructor.students.toLocaleString()} students
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -439,21 +507,27 @@ export default function Community() {
                   <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                   <div className="text-sm">
                     <div className="font-medium">Be Respectful</div>
-                    <div className="text-muted-foreground text-xs">Treat all members with respect and kindness</div>
+                    <div className="text-muted-foreground text-xs">
+                      Treat all members with respect and kindness
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                   <div className="text-sm">
                     <div className="font-medium">Share Progress</div>
-                    <div className="text-muted-foreground text-xs">Celebrate achievements and support others</div>
+                    <div className="text-muted-foreground text-xs">
+                      Celebrate achievements and support others
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                   <div className="text-sm">
                     <div className="font-medium">Ask Questions</div>
-                    <div className="text-muted-foreground text-xs">Help each other learn and improve</div>
+                    <div className="text-muted-foreground text-xs">
+                      Help each other learn and improve
+                    </div>
                   </div>
                 </div>
                 <Button variant="outline" className="w-full">
@@ -469,13 +543,12 @@ export default function Community() {
                 <div>
                   <h3 className="font-bold text-lg">Ready to Connect?</h3>
                   <p className="text-sm text-muted-foreground">
-                    Join our supportive community and accelerate your martial arts journey
+                    Join our supportive community and accelerate your martial
+                    arts journey
                   </p>
                 </div>
                 <Button className="w-full" asChild>
-                  <Link to="/signup">
-                    Join Community
-                  </Link>
+                  <Link to="/signup">Join Community</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -488,19 +561,20 @@ export default function Community() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800" 
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800"
                 alt="Gojo Martial Arts Logo"
                 className="w-10 h-10 object-contain"
                 style={{
-                  mixBlendMode: 'screen',
-                  filter: 'contrast(1.2) brightness(1.1)'
+                  mixBlendMode: "screen",
+                  filter: "contrast(1.2) brightness(1.1)",
                 }}
               />
               <span className="font-bold text-xl">Gojo</span>
             </div>
             <p className="text-secondary-foreground/80">
-              Master martial arts with the world's leading online training platform.
+              Master martial arts with the world's leading online training
+              platform.
             </p>
           </div>
         </div>

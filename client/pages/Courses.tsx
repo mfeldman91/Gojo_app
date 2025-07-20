@@ -1,23 +1,35 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Navigation } from "@/components/Navigation";
-import { 
-  Search, 
-  Filter, 
-  Star, 
-  Users, 
-  Clock, 
+import {
+  Search,
+  Filter,
+  Star,
+  Users,
+  Clock,
   Play,
   Award,
   Target,
   Shield,
   Zap,
   BookOpen,
-  TrendingUp
+  TrendingUp,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -40,9 +52,10 @@ export default function Courses() {
       lessons: 12,
       level: "Beginner",
       category: "boxing",
-      description: "Master the fundamentals of boxing including stance, footwork, and basic combinations.",
+      description:
+        "Master the fundamentals of boxing including stance, footwork, and basic combinations.",
       image: "boxing-fundamentals",
-      bestseller: true
+      bestseller: true,
     },
     {
       id: 2,
@@ -56,9 +69,10 @@ export default function Courses() {
       lessons: 18,
       level: "Beginner",
       category: "kung-fu",
-      description: "Learn authentic Wing Chun techniques from a direct lineage master.",
+      description:
+        "Learn authentic Wing Chun techniques from a direct lineage master.",
       image: "wing-chun",
-      bestseller: false
+      bestseller: false,
     },
     {
       id: 3,
@@ -72,9 +86,10 @@ export default function Courses() {
       lessons: 24,
       level: "Intermediate",
       category: "muay-thai",
-      description: "Comprehensive Muay Thai training from basics to advanced combinations.",
+      description:
+        "Comprehensive Muay Thai training from basics to advanced combinations.",
       image: "muay-thai",
-      bestseller: true
+      bestseller: true,
     },
     {
       id: 4,
@@ -88,9 +103,10 @@ export default function Courses() {
       lessons: 16,
       level: "Beginner",
       category: "self-defense",
-      description: "Practical self-defense techniques for real-world situations.",
+      description:
+        "Practical self-defense techniques for real-world situations.",
       image: "self-defense",
-      bestseller: true
+      bestseller: true,
     },
     {
       id: 5,
@@ -104,9 +120,10 @@ export default function Courses() {
       lessons: 20,
       level: "Advanced",
       category: "karate",
-      description: "Master traditional karate forms with precise technique and timing.",
+      description:
+        "Master traditional karate forms with precise technique and timing.",
       image: "karate-kata",
-      bestseller: false
+      bestseller: false,
     },
     {
       id: 6,
@@ -122,7 +139,7 @@ export default function Courses() {
       category: "bjj",
       description: "Ground fighting fundamentals and submission techniques.",
       image: "bjj-basics",
-      bestseller: false
+      bestseller: false,
     },
     {
       id: 7,
@@ -136,9 +153,10 @@ export default function Courses() {
       lessons: 35,
       level: "Intermediate",
       category: "mma",
-      description: "Complete mixed martial arts training combining multiple disciplines.",
+      description:
+        "Complete mixed martial arts training combining multiple disciplines.",
       image: "mma-complete",
-      bestseller: true
+      bestseller: true,
     },
     {
       id: 8,
@@ -152,10 +170,11 @@ export default function Courses() {
       lessons: 14,
       level: "Beginner",
       category: "tai-chi",
-      description: "Gentle martial art focusing on health, balance, and inner peace.",
+      description:
+        "Gentle martial art focusing on health, balance, and inner peace.",
       image: "tai-chi",
-      bestseller: false
-    }
+      bestseller: false,
+    },
   ];
 
   const categories = [
@@ -167,31 +186,34 @@ export default function Courses() {
     { value: "bjj", label: "Brazilian Jiu-Jitsu" },
     { value: "mma", label: "Mixed Martial Arts" },
     { value: "self-defense", label: "Self-Defense" },
-    { value: "tai-chi", label: "Tai Chi" }
+    { value: "tai-chi", label: "Tai Chi" },
   ];
 
   const levels = [
     { value: "all", label: "All Levels" },
     { value: "Beginner", label: "Beginner" },
     { value: "Intermediate", label: "Intermediate" },
-    { value: "Advanced", label: "Advanced" }
+    { value: "Advanced", label: "Advanced" },
   ];
 
   // Filter courses based on search and filters
-  const filteredCourses = courses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || course.category === selectedCategory;
-    const matchesLevel = selectedLevel === "all" || course.level === selectedLevel;
-    
+  const filteredCourses = courses.filter((course) => {
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || course.category === selectedCategory;
+    const matchesLevel =
+      selectedLevel === "all" || course.level === selectedLevel;
+
     return matchesSearch && matchesCategory && matchesLevel;
   });
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center space-y-4 mb-12">
@@ -199,8 +221,9 @@ export default function Courses() {
             Master Martial Arts
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Learn from world-class instructors. Train at your own pace. 
-            Master techniques from boxing to Kung Fu with our comprehensive course library.
+            Learn from world-class instructors. Train at your own pace. Master
+            techniques from boxing to Kung Fu with our comprehensive course
+            library.
           </p>
         </div>
 
@@ -210,7 +233,7 @@ export default function Courses() {
             <div className="md:col-span-2">
               <div className="relative">
                 <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-                <Input 
+                <Input
                   placeholder="Search courses, instructors, or techniques..."
                   className="pl-10"
                   value={searchTerm}
@@ -218,8 +241,11 @@ export default function Courses() {
                 />
               </div>
             </div>
-            
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+
+            <Select
+              value={selectedCategory}
+              onValueChange={setSelectedCategory}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
@@ -252,7 +278,9 @@ export default function Courses() {
             </p>
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Sort by popularity</span>
+              <span className="text-sm text-muted-foreground">
+                Sort by popularity
+              </span>
             </div>
           </div>
         </div>
@@ -265,11 +293,15 @@ export default function Courses() {
           </Card>
           <Card className="text-center p-4">
             <div className="text-2xl font-bold text-accent">50+</div>
-            <div className="text-sm text-muted-foreground">Expert Instructors</div>
+            <div className="text-sm text-muted-foreground">
+              Expert Instructors
+            </div>
           </Card>
           <Card className="text-center p-4">
             <div className="text-2xl font-bold text-secondary">8</div>
-            <div className="text-sm text-muted-foreground">Martial Arts Styles</div>
+            <div className="text-sm text-muted-foreground">
+              Martial Arts Styles
+            </div>
           </Card>
           <Card className="text-center p-4">
             <div className="text-2xl font-bold text-primary">4.8★</div>
@@ -284,51 +316,62 @@ export default function Courses() {
             Bestseller Courses
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {courses.filter(course => course.bestseller).slice(0, 4).map((course) => (
-              <Card key={course.id} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-t-lg relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-t-lg"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Button size="sm" className="rounded-full opacity-80 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  <div className="absolute top-3 left-3">
-                    <Badge className="bg-primary text-primary-foreground">Bestseller</Badge>
-                  </div>
-                  <div className="absolute bottom-3 right-3 text-white text-sm">
-                    <Clock className="w-4 h-4 inline mr-1" />
-                    {course.duration}
-                  </div>
-                </div>
-                <CardHeader className="pb-2">
-                  <div className="flex items-start justify-between">
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
-                      {course.title}
-                    </CardTitle>
-                  </div>
-                  <CardDescription className="text-sm">
-                    by {course.instructor}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex items-center gap-4 text-sm mb-3">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      <span>{course.rating}</span>
+            {courses
+              .filter((course) => course.bestseller)
+              .slice(0, 4)
+              .map((course) => (
+                <Card
+                  key={course.id}
+                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                >
+                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-t-lg relative">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-t-lg"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Button
+                        size="sm"
+                        className="rounded-full opacity-80 group-hover:opacity-100 transition-opacity"
+                      >
+                        <Play className="w-4 h-4" />
+                      </Button>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      <span>{course.students.toLocaleString()}</span>
+                    <div className="absolute top-3 left-3">
+                      <Badge className="bg-primary text-primary-foreground">
+                        Bestseller
+                      </Badge>
+                    </div>
+                    <div className="absolute bottom-3 right-3 text-white text-sm">
+                      <Clock className="w-4 h-4 inline mr-1" />
+                      {course.duration}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-xl font-bold">${course.price}</div>
-                    <Badge variant="secondary">{course.level}</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between">
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
+                        {course.title}
+                      </CardTitle>
+                    </div>
+                    <CardDescription className="text-sm">
+                      by {course.instructor}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="flex items-center gap-4 text-sm mb-3">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <span>{course.rating}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-4 h-4" />
+                        <span>{course.students.toLocaleString()}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="text-xl font-bold">${course.price}</div>
+                      <Badge variant="secondary">{course.level}</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
           </div>
         </div>
 
@@ -338,20 +381,28 @@ export default function Courses() {
             <BookOpen className="w-6 h-6 text-accent" />
             All Courses
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCourses.map((course) => (
-              <Card key={course.id} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+              <Card
+                key={course.id}
+                className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              >
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-t-lg relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-t-lg"></div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Button size="sm" className="rounded-full opacity-80 group-hover:opacity-100 transition-opacity">
+                    <Button
+                      size="sm"
+                      className="rounded-full opacity-80 group-hover:opacity-100 transition-opacity"
+                    >
                       <Play className="w-4 h-4" />
                     </Button>
                   </div>
                   {course.bestseller && (
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-primary text-primary-foreground">Bestseller</Badge>
+                      <Badge className="bg-primary text-primary-foreground">
+                        Bestseller
+                      </Badge>
                     </div>
                   )}
                   <div className="absolute top-3 right-3">
@@ -365,7 +416,7 @@ export default function Courses() {
                     {course.lessons} lessons
                   </div>
                 </div>
-                
+
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <CardTitle className="text-lg group-hover:text-primary transition-colors">
@@ -376,12 +427,12 @@ export default function Courses() {
                     by {course.instructor}
                   </CardDescription>
                 </CardHeader>
-                
+
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
                     {course.description}
                   </p>
-                  
+
                   <div className="flex items-center gap-4 text-sm mb-4">
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -392,7 +443,7 @@ export default function Courses() {
                       <span>{course.students.toLocaleString()}</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="text-xl font-bold">${course.price}</div>
@@ -419,18 +470,45 @@ export default function Courses() {
           </h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: "Boxing", icon: <Target className="w-8 h-8" />, count: "45 courses", color: "text-primary" },
-              { name: "Muay Thai", icon: <Zap className="w-8 h-8" />, count: "38 courses", color: "text-accent" },
-              { name: "Kung Fu", icon: <Award className="w-8 h-8" />, count: "52 courses", color: "text-secondary" },
-              { name: "Self-Defense", icon: <Shield className="w-8 h-8" />, count: "28 courses", color: "text-primary" }
+              {
+                name: "Boxing",
+                icon: <Target className="w-8 h-8" />,
+                count: "45 courses",
+                color: "text-primary",
+              },
+              {
+                name: "Muay Thai",
+                icon: <Zap className="w-8 h-8" />,
+                count: "38 courses",
+                color: "text-accent",
+              },
+              {
+                name: "Kung Fu",
+                icon: <Award className="w-8 h-8" />,
+                count: "52 courses",
+                color: "text-secondary",
+              },
+              {
+                name: "Self-Defense",
+                icon: <Shield className="w-8 h-8" />,
+                count: "28 courses",
+                color: "text-primary",
+              },
             ].map((category, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-shadow cursor-pointer"
+              >
                 <CardContent className="p-6">
                   <div className={`${category.color} mb-4 flex justify-center`}>
                     {category.icon}
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">{category.name}</h3>
-                  <p className="text-sm text-muted-foreground">{category.count}</p>
+                  <h3 className="font-semibold text-lg mb-2">
+                    {category.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {category.count}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -439,10 +517,13 @@ export default function Courses() {
 
         {/* Call to Action */}
         <div className="text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl p-8 lg:p-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Start Training?</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            Ready to Start Training?
+          </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of students learning martial arts from world-class instructors. 
-            Start your journey today with our beginner-friendly courses.
+            Join thousands of students learning martial arts from world-class
+            instructors. Start your journey today with our beginner-friendly
+            courses.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg px-8" asChild>
@@ -451,10 +532,13 @@ export default function Courses() {
                 Start Learning Now
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8" asChild>
-              <Link to="/pricing">
-                View Pricing Plans
-              </Link>
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-lg px-8"
+              asChild
+            >
+              <Link to="/pricing">View Pricing Plans</Link>
             </Button>
           </div>
         </div>
@@ -465,19 +549,20 @@ export default function Courses() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800" 
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F063165da271649ceb7c8b43e87a943e7%2F24ea7adf3b8a40f39841dcd598dfcd35?format=webp&width=800"
                 alt="Gojo Martial Arts Logo"
                 className="w-10 h-10 object-contain"
                 style={{
-                  mixBlendMode: 'screen',
-                  filter: 'contrast(1.2) brightness(1.1)'
+                  mixBlendMode: "screen",
+                  filter: "contrast(1.2) brightness(1.1)",
                 }}
               />
               <span className="font-bold text-xl">Gojo</span>
             </div>
             <p className="text-secondary-foreground/80">
-              Master martial arts with the world's leading online training platform.
+              Master martial arts with the world's leading online training
+              platform.
             </p>
           </div>
         </div>

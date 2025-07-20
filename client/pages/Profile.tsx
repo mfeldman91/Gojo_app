@@ -20,12 +20,12 @@ import {
   Share2,
   Plus,
   Target,
-    Clock,
+  Clock,
   Award,
   BookOpen,
   CreditCard,
   DollarSign,
-  Edit
+  Edit,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -350,7 +350,7 @@ export default function Profile() {
                     ></div>
                   </div>
                 </div>
-                                <Button variant="outline" size="sm" className="w-full">
+                <Button variant="outline" size="sm" className="w-full">
                   Set New Goals
                 </Button>
               </CardContent>
