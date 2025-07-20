@@ -167,10 +167,10 @@ export default function Index() {
       <section className="py-12 sm:py-16 lg:py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+                        <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-foreground">
               Why Choose Gojo?
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
               Our comprehensive platform combines expert instruction, structured
               learning, and community support to accelerate your martial arts
               journey.
