@@ -84,7 +84,10 @@ export function Navigation() {
               >
                 About
               </Link>
-              <div className="pt-4 space-y-2">
+                            <div className="pt-4 space-y-2">
+                <Button variant="ghost" className="w-full" asChild>
+                  <Link to="/profile" onClick={() => setIsMenuOpen(false)}>My Profile</Link>
+                </Button>
                 <Button variant="ghost" className="w-full" asChild>
                   <Link to="/login" onClick={() => setIsMenuOpen(false)}>Log In</Link>
                 </Button>
