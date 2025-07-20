@@ -51,7 +51,7 @@ export default function Index() {
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-lg">
                   Buy individual courses or get unlimited access with our monthly subscription. 
-                  Access premium video courses and train at your own pace.
+                  Learn from elite instructors and share your progress with the community.
                 </p>
               </div>
               
