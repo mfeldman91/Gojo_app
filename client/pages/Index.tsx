@@ -298,7 +298,86 @@ export default function Index() {
         </div>
       </section>
 
-            {/* Pricing Section */}
+                  {/* Instructor CTA Section */}
+      <section className="py-20 lg:py-32 bg-primary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+                Share Your Expertise
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Join hundreds of martial arts instructors earning money by teaching what they love.
+                Create courses, build your following, and impact students worldwide.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center space-y-3">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                  <Video className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-semibold text-lg">Create Courses</h3>
+                <p className="text-sm text-muted-foreground">
+                  Upload video lessons, add resources, and structure your martial arts curriculum
+                </p>
+              </div>
+
+              <div className="text-center space-y-3">
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <Users className="w-8 h-8 text-accent" />
+                </div>
+                <h3 className="font-semibold text-lg">Build Your Following</h3>
+                <p className="text-sm text-muted-foreground">
+                  Connect with students globally and grow your martial arts community
+                </p>
+              </div>
+
+              <div className="text-center space-y-3">
+                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto">
+                  <DollarSign className="w-8 h-8 text-secondary" />
+                </div>
+                <h3 className="font-semibold text-lg">Earn Revenue</h3>
+                <p className="text-sm text-muted-foreground">
+                  Set your own prices and earn up to 80% revenue share on course sales
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="text-lg px-8" asChild>
+                <Link to="/instructor/dashboard">
+                  <Award className="w-5 h-5 mr-2" />
+                  Become an Instructor
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-lg px-8" asChild>
+                <Link to="/instructor/profile">
+                  <Eye className="w-5 h-5 mr-2" />
+                  See Example Profile
+                </Link>
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto pt-8">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">200+</div>
+                <div className="text-sm text-muted-foreground">Active Instructors</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-accent">$500K+</div>
+                <div className="text-sm text-muted-foreground">Instructor Earnings</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-secondary">4.8★</div>
+                <div className="text-sm text-muted-foreground">Average Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
       <section className="py-20 lg:py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
