@@ -71,10 +71,10 @@ export default function Index() {
                     Start Training Now
                   </Link>
                 </Button>
-                <Button
+                                <Button
                   size="lg"
                   variant="outline"
-                  className="text-lg px-8"
+                  className="text-base sm:text-lg px-6 sm:px-8"
                   asChild
                 >
                   <Link to="/courses">
