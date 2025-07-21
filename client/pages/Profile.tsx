@@ -350,7 +350,12 @@ export default function Profile() {
                     ></div>
                   </div>
                 </div>
-                <Button variant="outline" size="sm" className="w-full">
+                                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => alert("Goals setting feature coming soon! 🎯")}
+                >
                   Set New Goals
                 </Button>
               </CardContent>
