@@ -167,6 +167,5 @@ export function getRecentActivity() {
   });
 }
 
-// Export for easy access
-const globalStats = getUserStats();
-export { globalStats };
+// Export individual functions for easy access
+export default getUserStats;
