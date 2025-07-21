@@ -312,7 +312,23 @@ export default function CreateCourse() {
                             Upload PDFs, images, or other learning materials
                           </span>
                         </div>
-                        <Button variant="outline" size="sm">
+                                                <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            const input = document.createElement('input');
+                            input.type = 'file';
+                            input.accept = '.pdf,.doc,.docx,.png,.jpg,.jpeg';
+                            input.multiple = true;
+                            input.onchange = (e) => {
+                              const files = Array.from((e.target as HTMLInputElement).files || []);
+                              if (files.length > 0) {
+                                alert(`${files.length} resource file(s) selected! 📚`);
+                              }
+                            };
+                            input.click();
+                          }}
+                        >
                           <Plus className="w-4 h-4 mr-2" />
                           Add Resources
                         </Button>
