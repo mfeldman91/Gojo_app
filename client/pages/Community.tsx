@@ -173,7 +173,55 @@ export default function Community() {
       students: 4521,
       avatar: "MS",
     },
-  ];
+    ];
+
+  const handleSharePost = async () => {
+    if (!newPost.trim()) return;
+
+    setIsSubmitting(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setNewPost("");
+      setSelectedImage(null);
+      setIsSubmitting(false);
+      // Show success message (in real app, would add to state/context)
+      alert("Post shared successfully! 🎉");
+    }, 1500);
+  };
+
+  const handleAddPhoto = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*,video/*';
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        setSelectedImage(file);
+      }
+    };
+    input.click();
+  };
+
+  const handleRemovePhoto = () => {
+    setSelectedImage(null);
+  };
+
+  const handleJoinChallenge = (challengeId: number, challengeTitle: string) => {
+    // In real app, would call API to join challenge
+    alert(`Successfully joined "${challengeTitle}"! 🚀`);
+  };
+
+  const handleLikePost = (postId: number) => {
+    // In real app, would update like count in state
+    console.log(`Liked post ${postId}`);
+  };
+
+  const handleSharePostAction = (postId: number) => {
+    // In real app, would open share modal or copy link
+    navigator.clipboard.writeText(`${window.location.origin}/community/post/${postId}`);
+    alert("Post link copied to clipboard! 📋");
+  };
 
   return (
     <div className="min-h-screen bg-background">
