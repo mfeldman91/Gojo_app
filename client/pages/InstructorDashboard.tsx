@@ -43,15 +43,15 @@ export default function InstructorDashboard() {
     coursesInDraft: 2,
   };
 
-    const courses = [
+      const courses = [
     {
       id: 1,
       title: "Wing Chun Fundamentals",
       status: "published",
-      students: Math.floor(instructorStats.totalStudents * 0.38),
-      revenue: Math.floor(instructorStats.totalRevenue * 0.32),
-      rating: 4.8 + Math.random() * 0.2,
-      reviews: Math.floor(instructorStats.totalReviews * 0.37),
+      students: 324,
+      revenue: 12800,
+      rating: 4.9,
+      reviews: 87,
       lastUpdated: "2024-01-15",
       thumbnail: "wing-chun-thumb",
     },
@@ -59,10 +59,10 @@ export default function InstructorDashboard() {
       id: 2,
       title: "Advanced Kung Fu Forms",
       status: "published",
-      students: Math.floor(instructorStats.totalStudents * 0.22),
-      revenue: Math.floor(instructorStats.totalRevenue * 0.28),
-      rating: 4.7 + Math.random() * 0.2,
-      reviews: Math.floor(instructorStats.totalReviews * 0.25),
+      students: 156,
+      revenue: 8200,
+      rating: 4.8,
+      reviews: 43,
       lastUpdated: "2024-01-10",
       thumbnail: "kung-fu-thumb",
     },
@@ -70,10 +70,10 @@ export default function InstructorDashboard() {
       id: 3,
       title: "Traditional Weapons Training",
       status: "published",
-      students: Math.floor(instructorStats.totalStudents * 0.18),
-      revenue: Math.floor(instructorStats.totalRevenue * 0.22),
-      rating: 4.8 + Math.random() * 0.2,
-      reviews: Math.floor(instructorStats.totalReviews * 0.20),
+      students: 89,
+      revenue: 6100,
+      rating: 4.9,
+      reviews: 31,
       lastUpdated: "2024-01-08",
       thumbnail: "weapons-thumb",
     },
@@ -101,28 +101,25 @@ export default function InstructorDashboard() {
     },
   ];
 
-    const studentNames = ["Sarah Johnson", "Mike Chen", "Emma Rodriguez", "David Park", "Lisa Thompson", "Alex Kim", "Maria Santos", "John Wilson"];
-  const courseNames = ["Wing Chun Fundamentals", "Advanced Kung Fu Forms", "Traditional Weapons Training"];
-
-  const recentActivity = [
+      const recentActivity = [
     {
       type: "new_student",
-      message: `${studentNames[Math.floor(Math.random() * studentNames.length)]} enrolled in ${courseNames[Math.floor(Math.random() * courseNames.length)]}`,
+      message: "Sarah Johnson enrolled in Wing Chun Fundamentals",
       time: "2 hours ago",
     },
     {
       type: "review",
-      message: `New ${4 + Math.floor(Math.random() * 2)}-star review on ${courseNames[Math.floor(Math.random() * courseNames.length)]}`,
+      message: "New 5-star review on Advanced Kung Fu Forms",
       time: "4 hours ago",
     },
     {
       type: "revenue",
-      message: `Earned $${Math.floor(50 + Math.random() * 200)} from course sales today`,
+      message: "Earned $89 from course sales today",
       time: "6 hours ago",
     },
     {
       type: "message",
-      message: `New message from student ${studentNames[Math.floor(Math.random() * studentNames.length)]}`,
+      message: "New message from student Mike Rodriguez",
       time: "1 day ago",
     },
   ];
@@ -182,8 +179,8 @@ export default function InstructorDashboard() {
               </div>
                             <div className="flex items-center pt-2">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-                <span className="text-sm text-green-500">
-                  +{instructorStats.monthlyGrowthRate.toFixed(1)}% from last month
+                                <span className="text-sm text-green-500">
+                  +12% from last month
                 </span>
               </div>
             </CardContent>
@@ -430,12 +427,12 @@ export default function InstructorDashboard() {
                                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Revenue Target</span>
-                    <span>${instructorStats.monthlyRevenue.toLocaleString()} / ${Math.floor(instructorStats.monthlyRevenue * 1.3).toLocaleString()}</span>
+                                        <span>$8,200 / $10,000</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
                     <div
                       className="bg-primary h-2 rounded-full"
-                      style={{ width: `${Math.min(100, (instructorStats.monthlyRevenue / (instructorStats.monthlyRevenue * 1.3)) * 100)}%` }}
+                      style={{ width: "82%" }}
                     ></div>
                   </div>
                 </div>
@@ -443,12 +440,12 @@ export default function InstructorDashboard() {
                                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>New Students</span>
-                    <span>{instructorStats.newStudents} / {Math.floor(instructorStats.newStudents * 1.5)}</span>
+                                        <span>34 / 50</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
                     <div
                       className="bg-accent h-2 rounded-full"
-                      style={{ width: `${Math.min(100, (instructorStats.newStudents / (instructorStats.newStudents * 1.5)) * 100)}%` }}
+                      style={{ width: "68%" }}
                     ></div>
                   </div>
                 </div>
@@ -479,7 +476,7 @@ export default function InstructorDashboard() {
                     <CheckCircle className="w-4 h-4 text-green-500" />
                     <span className="text-sm">Published</span>
                   </div>
-                                    <span className="font-semibold">{instructorStats.coursesPublished}</span>
+                                                      <span className="font-semibold">10</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -493,7 +490,7 @@ export default function InstructorDashboard() {
                     <Edit className="w-4 h-4 text-muted-foreground" />
                     <span className="text-sm">Draft</span>
                   </div>
-                                    <span className="font-semibold">{instructorStats.coursesInDraft}</span>
+                                                      <span className="font-semibold">2</span>
                 </div>
               </CardContent>
             </Card>
