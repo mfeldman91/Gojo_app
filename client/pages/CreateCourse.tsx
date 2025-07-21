@@ -280,7 +280,22 @@ export default function CreateCourse() {
                           <p className="text-xs text-muted-foreground">
                             MP4, MOV up to 2GB. Recommended: 1080p, 30fps
                           </p>
-                          <Button variant="outline" size="sm">
+                                                    <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {
+                              const input = document.createElement('input');
+                              input.type = 'file';
+                              input.accept = 'video/*';
+                              input.onchange = (e) => {
+                                const file = (e.target as HTMLInputElement).files?.[0];
+                                if (file) {
+                                  alert(`Video "${file.name}" selected for upload! 🎥`);
+                                }
+                              };
+                              input.click();
+                            }}
+                          >
                             <Upload className="w-4 h-4 mr-2" />
                             Choose File
                           </Button>
