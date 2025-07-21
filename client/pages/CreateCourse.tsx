@@ -432,11 +432,18 @@ export default function CreateCourse() {
                 </div>
 
                 <div className="space-y-3">
-                  <Button className="w-full">
+                                    <Button
+                    className="w-full"
+                    onClick={() => alert("Course saved as draft! ✅")}
+                  >
                     <Save className="w-4 h-4 mr-2" />
                     Save as Draft
                   </Button>
-                  <Button variant="outline" className="w-full">
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => alert("Course submitted for review! We'll review it within 24-48 hours. 📝")}
+                  >
                     Submit for Review
                   </Button>
                 </div>
