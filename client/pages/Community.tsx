@@ -27,7 +27,8 @@ import {
   Clock,
   Star,
   CheckCircle,
-  Zap,
+    Zap,
+  X,
 } from "lucide-react";
 import { useState } from "react";
 
