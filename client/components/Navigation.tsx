@@ -51,10 +51,10 @@ export function Navigation() {
             <Button variant="outline" size="sm" asChild>
               <Link to="/instructor/dashboard">Teach on Gojo</Link>
             </Button>
-                        <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black" asChild>
+                                    <Button variant="outline" className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white" asChild>
               <Link to="/profile">My Profile</Link>
             </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black" asChild>
+            <Button variant="outline" className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white" asChild>
               <Link to="/login">Log In</Link>
             </Button>
             <Button asChild>
@@ -109,12 +109,12 @@ export function Navigation() {
                     Teach on Gojo
                   </Link>
                 </Button>
-                                <Button variant="outline" className="w-full border-white text-white hover:bg-white hover:text-black" asChild>
+                                                <Button variant="outline" className="w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white" asChild>
                   <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
                     My Profile
                   </Link>
                 </Button>
-                <Button variant="outline" className="w-full border-white text-white hover:bg-white hover:text-black" asChild>
+                <Button variant="outline" className="w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white" asChild>
                   <Link to="/login" onClick={() => setIsMenuOpen(false)}>
                     Log In
                   </Link>
