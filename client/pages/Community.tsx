@@ -33,6 +33,8 @@ import { useState } from "react";
 
 export default function Community() {
   const [newPost, setNewPost] = useState("");
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Mock community data
   const featuredPosts = [
