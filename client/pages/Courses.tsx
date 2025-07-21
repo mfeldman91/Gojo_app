@@ -32,22 +32,32 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useState } from "react";
+import { getCourseStats } from "@/lib/stats";
 
 export default function Courses() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState("all");
 
+  // Generate realistic stats for each course
+  const generateCourseStats = (baseStudents: number, seed: number) => {
+    const multiplier = 0.8 + (Math.sin(seed) + 1) * 0.2; // Deterministic variance
+    return {
+      students: Math.floor(baseStudents * multiplier),
+      rating: Math.max(4.5, 4.6 + (Math.cos(seed) * 0.4)),
+    };
+  };
+
   // Mock courses data
   const courses = [
     {
       id: 1,
-      title: "Boxing Fundamentals",
+            title: "Boxing Fundamentals",
       instructor: "Coach Mike Rodriguez",
       price: 29,
       originalPrice: null,
-      rating: 4.9,
-      students: 1247,
+      rating: generateCourseStats(1247, 1).rating,
+      students: generateCourseStats(1247, 1).students,
       duration: "3.5 hours",
       lessons: 12,
       level: "Beginner",
@@ -59,12 +69,12 @@ export default function Courses() {
     },
     {
       id: 2,
-      title: "Wing Chun Fundamentals",
+            title: "Wing Chun Fundamentals",
       instructor: "Master Chen Wei",
       price: 89,
       originalPrice: 129,
-      rating: 4.9,
-      students: 324,
+      rating: generateCourseStats(324, 2).rating,
+      students: generateCourseStats(324, 2).students,
       duration: "6.5 hours",
       lessons: 18,
       level: "Beginner",
@@ -76,12 +86,12 @@ export default function Courses() {
     },
     {
       id: 3,
-      title: "Muay Thai Complete Course",
+            title: "Muay Thai Complete Course",
       instructor: "Kru Sirimongkol",
       price: 79,
       originalPrice: null,
-      rating: 4.8,
-      students: 856,
+      rating: generateCourseStats(856, 3).rating,
+      students: generateCourseStats(856, 3).students,
       duration: "8.2 hours",
       lessons: 24,
       level: "Intermediate",
@@ -93,12 +103,12 @@ export default function Courses() {
     },
     {
       id: 4,
-      title: "Self-Defense for Everyone",
+            title: "Self-Defense for Everyone",
       instructor: "Sensei Maria Santos",
       price: 39,
       originalPrice: null,
-      rating: 4.9,
-      students: 1923,
+      rating: generateCourseStats(1923, 4).rating,
+      students: generateCourseStats(1923, 4).students,
       duration: "4.0 hours",
       lessons: 16,
       level: "Beginner",
@@ -110,12 +120,12 @@ export default function Courses() {
     },
     {
       id: 5,
-      title: "Advanced Karate Kata",
+            title: "Advanced Karate Kata",
       instructor: "Sensei Takeshi Yamamoto",
       price: 69,
       originalPrice: 99,
-      rating: 4.7,
-      students: 189,
+      rating: generateCourseStats(189, 5).rating,
+      students: generateCourseStats(189, 5).students,
       duration: "5.8 hours",
       lessons: 20,
       level: "Advanced",
