@@ -27,21 +27,18 @@ import {
   Plus,
   CheckCircle,
 } from "lucide-react";
-import { getInstructorStats, getCourseStats } from "@/lib/stats";
 
 export default function InstructorProfile() {
-  const instructorStats = getInstructorStats();
-
-  // Mock instructor data with realistic stats
+  // Mock instructor data
   const instructor = {
     name: "Master Chen Wei",
     title: "Kung Fu & Wing Chun Specialist",
     location: "San Francisco, CA",
     experience: "25+ Years Teaching",
-    students: instructorStats.totalStudents,
-    courses: instructorStats.coursesPublished,
-    rating: instructorStats.averageRating,
-    reviews: instructorStats.totalReviews,
+    students: 847,
+    courses: 12,
+    rating: 4.9,
+    reviews: 234,
     bio: "Master Chen Wei has been practicing martial arts for over 30 years and teaching for 25 years. He specializes in traditional Kung Fu forms and Wing Chun, having trained directly under Grandmaster Ip Ching. He believes in making ancient martial arts accessible to modern students through structured, progressive training.",
     specialties: ["Kung Fu", "Wing Chun", "Traditional Forms", "Self-Defense"],
     achievements: [
@@ -50,45 +47,45 @@ export default function InstructorProfile() {
       "Former competitive martial artist",
       "Featured in Martial Arts Magazine",
     ],
-        socialProof: {
+            socialProof: {
       website: "masterchen-kungfu.com",
       yearsOnGojo: 3,
-      totalEarnings: `$${instructorStats.totalRevenue.toLocaleString()}`,
+      totalEarnings: "$47,500",
     },
   };
 
-    const instructorCourses = [
+      const instructorCourses = [
     {
       id: 1,
       title: "Wing Chun Fundamentals",
       price: 89,
-      students: Math.floor(instructorStats.totalStudents * 0.38),
-      rating: 4.8 + Math.random() * 0.2,
+      students: 324,
+      rating: 4.9,
       duration: "6.5 hours",
       level: "Beginner",
-      revenue: `$${Math.floor(instructorStats.totalRevenue * 0.32).toLocaleString()}`,
+      revenue: "$12,800",
       image: "wing-chun-basics",
     },
     {
       id: 2,
       title: "Advanced Kung Fu Forms",
       price: 129,
-      students: Math.floor(instructorStats.totalStudents * 0.22),
-      rating: 4.7 + Math.random() * 0.2,
+      students: 156,
+      rating: 4.8,
       duration: "8.2 hours",
       level: "Advanced",
-      revenue: `$${Math.floor(instructorStats.totalRevenue * 0.28).toLocaleString()}`,
+      revenue: "$8,200",
       image: "kung-fu-advanced",
     },
     {
       id: 3,
       title: "Traditional Weapons Training",
       price: 149,
-      students: Math.floor(instructorStats.totalStudents * 0.18),
-      rating: 4.8 + Math.random() * 0.2,
+      students: 89,
+      rating: 4.9,
       duration: "5.8 hours",
       level: "Intermediate",
-      revenue: `$${Math.floor(instructorStats.totalRevenue * 0.22).toLocaleString()}`,
+      revenue: "$6,100",
       image: "weapons-training",
     },
   ];
