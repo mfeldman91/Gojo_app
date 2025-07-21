@@ -381,11 +381,12 @@ export default function Community() {
                           </div>
                         )}
 
-                        <div className="flex items-center gap-4 pt-2">
+                                                <div className="flex items-center gap-4 pt-2">
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 px-2"
+                            className="h-8 px-2 hover:text-red-500 hover:bg-red-50"
+                            onClick={() => handleLikePost(post.id)}
                           >
                             <Heart className="w-4 h-4 mr-1" />
                             {post.likes}
@@ -402,6 +403,7 @@ export default function Community() {
                             variant="ghost"
                             size="sm"
                             className="h-8 px-2"
+                            onClick={() => handleSharePostAction(post.id)}
                           >
                             <Share2 className="w-4 h-4 mr-1" />
                             Share
@@ -453,11 +455,12 @@ export default function Community() {
                           </div>
                         )}
 
-                        <div className="flex items-center gap-4 pt-2">
+                                                <div className="flex items-center gap-4 pt-2">
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 px-2"
+                            className="h-8 px-2 hover:text-red-500 hover:bg-red-50"
+                            onClick={() => handleLikePost(post.id)}
                           >
                             <Heart className="w-4 h-4 mr-1" />
                             {post.likes}
@@ -474,6 +477,7 @@ export default function Community() {
                             variant="ghost"
                             size="sm"
                             className="h-8 px-2"
+                            onClick={() => handleSharePostAction(post.id)}
                           >
                             <Share2 className="w-4 h-4 mr-1" />
                             Share
