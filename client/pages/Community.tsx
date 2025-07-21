@@ -286,18 +286,48 @@ export default function Community() {
                   onChange={(e) => setNewPost(e.target.value)}
                   className="min-h-[100px]"
                 />
+                                {/* Selected Image Preview */}
+                {selectedImage && (
+                  <div className="relative p-4 border rounded-lg bg-muted/50">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Camera className="w-5 h-5 text-primary" />
+                        <span className="text-sm font-medium">{selectedImage.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          ({(selectedImage.size / 1024 / 1024).toFixed(1)} MB)
+                        </span>
+                      </div>
+                      <Button variant="ghost" size="sm" onClick={handleRemovePhoto}>
+                        <X className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex justify-between items-center">
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={handleAddPhoto}>
                       <Camera className="w-4 h-4 mr-2" />
-                      Add Photo
+                      Add Photo/Video
                     </Button>
                     <Button variant="outline" size="sm">
                       <Target className="w-4 h-4 mr-2" />
                       Tag Technique
                     </Button>
                   </div>
-                  <Button disabled={!newPost.trim()}>Share Post</Button>
+                  <Button
+                    disabled={!newPost.trim() || isSubmitting}
+                    onClick={handleSharePost}
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Sharing...
+                      </div>
+                    ) : (
+                      "Share Post"
+                    )}
+                  </Button>
                 </div>
               </CardContent>
             </Card>
