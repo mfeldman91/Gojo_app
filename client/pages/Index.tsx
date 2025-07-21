@@ -99,7 +99,7 @@ export default function Index() {
                     ))}
                   </div>
                   <div className="text-sm">
-                                                            <div className="font-semibold text-foreground">
+                    <div className="font-semibold text-foreground">
                       5,000+ Students
                     </div>
                     <div className="text-muted-foreground">
@@ -111,7 +111,7 @@ export default function Index() {
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star key={i} className="w-5 h-5 fill-accent text-accent" />
                   ))}
-                                                      <span className="text-sm font-semibold ml-2">
+                  <span className="text-sm font-semibold ml-2">
                     4.9/5 Rating
                   </span>
                 </div>
@@ -140,8 +140,8 @@ export default function Index() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <Users className="w-6 h-6 text-primary" />
                   </div>
-                                    <div>
-                                        <div className="font-bold text-lg">50+</div>
+                  <div>
+                    <div className="font-bold text-lg">50+</div>
                     <div className="text-sm text-muted-foreground">
                       Expert Instructors
                     </div>
@@ -154,8 +154,8 @@ export default function Index() {
                   <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
                     <Clock className="w-6 h-6 text-accent" />
                   </div>
-                                    <div>
-                                        <div className="font-bold text-lg">1000+</div>
+                  <div>
+                    <div className="font-bold text-lg">1000+</div>
                     <div className="text-sm text-muted-foreground">
                       Hours Content
                     </div>
@@ -423,20 +423,20 @@ export default function Index() {
             </div>
 
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto pt-8">
-                            <div className="text-center">
-                                <div className="text-2xl font-bold text-primary">200+</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">200+</div>
                 <div className="text-sm text-muted-foreground">
                   Active Instructors
                 </div>
               </div>
-                            <div className="text-center">
-                                <div className="text-2xl font-bold text-accent">$500K+</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-accent">$500K+</div>
                 <div className="text-sm text-muted-foreground">
                   Instructor Earnings
                 </div>
               </div>
-                            <div className="text-center">
-                                <div className="text-2xl font-bold text-secondary">4.8★</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-secondary">4.8★</div>
                 <div className="text-sm text-muted-foreground">
                   Average Rating
                 </div>

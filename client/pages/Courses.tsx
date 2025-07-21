@@ -42,7 +42,7 @@ export default function Courses() {
   const courses = [
     {
       id: 1,
-                  title: "Boxing Fundamentals",
+      title: "Boxing Fundamentals",
       instructor: "Coach Mike Rodriguez",
       price: 29,
       originalPrice: null,
@@ -59,7 +59,7 @@ export default function Courses() {
     },
     {
       id: 2,
-                  title: "Wing Chun Fundamentals",
+      title: "Wing Chun Fundamentals",
       instructor: "Master Chen Wei",
       price: 89,
       originalPrice: 129,
@@ -76,7 +76,7 @@ export default function Courses() {
     },
     {
       id: 3,
-                  title: "Muay Thai Complete Course",
+      title: "Muay Thai Complete Course",
       instructor: "Kru Sirimongkol",
       price: 79,
       originalPrice: null,
@@ -93,7 +93,7 @@ export default function Courses() {
     },
     {
       id: 4,
-                  title: "Self-Defense for Everyone",
+      title: "Self-Defense for Everyone",
       instructor: "Sensei Maria Santos",
       price: 39,
       originalPrice: null,
@@ -110,7 +110,7 @@ export default function Courses() {
     },
     {
       id: 5,
-                  title: "Advanced Karate Kata",
+      title: "Advanced Karate Kata",
       instructor: "Sensei Takeshi Yamamoto",
       price: 69,
       originalPrice: 99,

@@ -43,7 +43,7 @@ export default function InstructorDashboard() {
     coursesInDraft: 2,
   };
 
-      const courses = [
+  const courses = [
     {
       id: 1,
       title: "Wing Chun Fundamentals",
@@ -101,7 +101,7 @@ export default function InstructorDashboard() {
     },
   ];
 
-      const recentActivity = [
+  const recentActivity = [
     {
       type: "new_student",
       message: "Sarah Johnson enrolled in Wing Chun Fundamentals",
@@ -177,9 +177,9 @@ export default function InstructorDashboard() {
                 </div>
                 <DollarSign className="h-8 w-8 text-primary" />
               </div>
-                            <div className="flex items-center pt-2">
+              <div className="flex items-center pt-2">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-                                <span className="text-sm text-green-500">
+                <span className="text-sm text-green-500">
                   +12% from last month
                 </span>
               </div>
@@ -424,10 +424,10 @@ export default function InstructorDashboard() {
                 <CardTitle>Monthly Goals</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                                <div className="space-y-2">
+                <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Revenue Target</span>
-                                        <span>$8,200 / $10,000</span>
+                    <span>$8,200 / $10,000</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
                     <div
@@ -437,10 +437,10 @@ export default function InstructorDashboard() {
                   </div>
                 </div>
 
-                                <div className="space-y-2">
+                <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>New Students</span>
-                                        <span>34 / 50</span>
+                    <span>34 / 50</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
                     <div
@@ -476,21 +476,21 @@ export default function InstructorDashboard() {
                     <CheckCircle className="w-4 h-4 text-green-500" />
                     <span className="text-sm">Published</span>
                   </div>
-                                                      <span className="font-semibold">10</span>
+                  <span className="font-semibold">10</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 text-yellow-500" />
                     <span className="text-sm">Under Review</span>
                   </div>
-                                    <span className="font-semibold">1</span>
+                  <span className="font-semibold">1</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Edit className="w-4 h-4 text-muted-foreground" />
                     <span className="text-sm">Draft</span>
                   </div>
-                                                      <span className="font-semibold">2</span>
+                  <span className="font-semibold">2</span>
                 </div>
               </CardContent>
             </Card>

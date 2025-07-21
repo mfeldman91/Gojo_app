@@ -125,7 +125,7 @@ export default function Community() {
     },
   ];
 
-      const challenges = [
+  const challenges = [
     {
       id: 1,
       title: "30-Day Technique Challenge",
@@ -236,8 +236,8 @@ export default function Community() {
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
             Join the Gojo Community
           </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                        Connect with fellow martial artists, share your progress, get
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Connect with fellow martial artists, share your progress, get
             motivated, and learn from each other. Over 10,000 students training
             together worldwide.
           </p>
@@ -247,22 +247,22 @@ export default function Community() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <Card className="text-center p-4">
             <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                                    <div className="text-2xl font-bold text-primary">10K+</div>
+            <div className="text-2xl font-bold text-primary">10K+</div>
             <div className="text-sm text-muted-foreground">Active Members</div>
           </Card>
           <Card className="text-center p-4">
             <MessageCircle className="w-8 h-8 text-accent mx-auto mb-2" />
-                                    <div className="text-2xl font-bold text-accent">50K+</div>
+            <div className="text-2xl font-bold text-accent">50K+</div>
             <div className="text-sm text-muted-foreground">Posts Shared</div>
           </Card>
           <Card className="text-center p-4">
             <Trophy className="w-8 h-8 text-secondary mx-auto mb-2" />
-                                    <div className="text-2xl font-bold text-secondary">1.2K</div>
+            <div className="text-2xl font-bold text-secondary">1.2K</div>
             <div className="text-sm text-muted-foreground">Goals Achieved</div>
           </Card>
           <Card className="text-center p-4">
             <Globe className="w-8 h-8 text-primary mx-auto mb-2" />
-                                    <div className="text-2xl font-bold text-primary">67</div>
+            <div className="text-2xl font-bold text-primary">67</div>
             <div className="text-sm text-muted-foreground">Countries</div>
           </Card>
         </div>

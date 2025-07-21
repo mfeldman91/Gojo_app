@@ -47,14 +47,14 @@ export default function InstructorProfile() {
       "Former competitive martial artist",
       "Featured in Martial Arts Magazine",
     ],
-            socialProof: {
+    socialProof: {
       website: "masterchen-kungfu.com",
       yearsOnGojo: 3,
       totalEarnings: "$47,500",
     },
   };
 
-      const instructorCourses = [
+  const instructorCourses = [
     {
       id: 1,
       title: "Wing Chun Fundamentals",
