@@ -350,7 +350,7 @@ export default function Profile() {
                     ></div>
                   </div>
                 </div>
-                                <Button
+                <Button
                   variant="outline"
                   size="sm"
                   className="w-full"

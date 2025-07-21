@@ -181,9 +181,11 @@ export default function Billing() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Payment Methods</CardTitle>
-                                    <Button
+                  <Button
                     size="sm"
-                    onClick={() => alert("Payment method form will be expanded below! 💳")}
+                    onClick={() =>
+                      alert("Payment method form will be expanded below! 💳")
+                    }
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Payment Method

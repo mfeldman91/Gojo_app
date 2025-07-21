@@ -280,17 +280,20 @@ export default function CreateCourse() {
                           <p className="text-xs text-muted-foreground">
                             MP4, MOV up to 2GB. Recommended: 1080p, 30fps
                           </p>
-                                                    <Button
+                          <Button
                             variant="outline"
                             size="sm"
                             onClick={() => {
-                              const input = document.createElement('input');
-                              input.type = 'file';
-                              input.accept = 'video/*';
+                              const input = document.createElement("input");
+                              input.type = "file";
+                              input.accept = "video/*";
                               input.onchange = (e) => {
-                                const file = (e.target as HTMLInputElement).files?.[0];
+                                const file = (e.target as HTMLInputElement)
+                                  .files?.[0];
                                 if (file) {
-                                  alert(`Video "${file.name}" selected for upload! 🎥`);
+                                  alert(
+                                    `Video "${file.name}" selected for upload! 🎥`,
+                                  );
                                 }
                               };
                               input.click();
@@ -312,18 +315,22 @@ export default function CreateCourse() {
                             Upload PDFs, images, or other learning materials
                           </span>
                         </div>
-                                                <Button
+                        <Button
                           variant="outline"
                           size="sm"
                           onClick={() => {
-                            const input = document.createElement('input');
-                            input.type = 'file';
-                            input.accept = '.pdf,.doc,.docx,.png,.jpg,.jpeg';
+                            const input = document.createElement("input");
+                            input.type = "file";
+                            input.accept = ".pdf,.doc,.docx,.png,.jpg,.jpeg";
                             input.multiple = true;
                             input.onchange = (e) => {
-                              const files = Array.from((e.target as HTMLInputElement).files || []);
+                              const files = Array.from(
+                                (e.target as HTMLInputElement).files || [],
+                              );
                               if (files.length > 0) {
-                                alert(`${files.length} resource file(s) selected! 📚`);
+                                alert(
+                                  `${files.length} resource file(s) selected! 📚`,
+                                );
                               }
                             };
                             input.click();
@@ -463,7 +470,7 @@ export default function CreateCourse() {
                 </div>
 
                 <div className="space-y-3">
-                                    <Button
+                  <Button
                     className="w-full"
                     onClick={() => alert("Course saved as draft! ✅")}
                   >
@@ -473,7 +480,11 @@ export default function CreateCourse() {
                   <Button
                     variant="outline"
                     className="w-full"
-                    onClick={() => alert("Course submitted for review! We'll review it within 24-48 hours. 📝")}
+                    onClick={() =>
+                      alert(
+                        "Course submitted for review! We'll review it within 24-48 hours. 📝",
+                      )
+                    }
                   >
                     Submit for Review
                   </Button>

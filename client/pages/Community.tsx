@@ -27,7 +27,7 @@ import {
   Clock,
   Star,
   CheckCircle,
-    Zap,
+  Zap,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -174,7 +174,7 @@ export default function Community() {
       students: 4521,
       avatar: "MS",
     },
-    ];
+  ];
 
   const handleSharePost = async () => {
     if (!newPost.trim()) return;
@@ -192,9 +192,9 @@ export default function Community() {
   };
 
   const handleAddPhoto = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*,video/*';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*,video/*";
     input.onchange = (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (file) {
@@ -220,7 +220,9 @@ export default function Community() {
 
   const handleSharePostAction = (postId: number) => {
     // In real app, would open share modal or copy link
-    navigator.clipboard.writeText(`${window.location.origin}/community/post/${postId}`);
+    navigator.clipboard.writeText(
+      `${window.location.origin}/community/post/${postId}`,
+    );
     alert("Post link copied to clipboard! 📋");
   };
 
@@ -287,18 +289,24 @@ export default function Community() {
                   onChange={(e) => setNewPost(e.target.value)}
                   className="min-h-[100px]"
                 />
-                                {/* Selected Image Preview */}
+                {/* Selected Image Preview */}
                 {selectedImage && (
                   <div className="relative p-4 border rounded-lg bg-muted/50">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <Camera className="w-5 h-5 text-primary" />
-                        <span className="text-sm font-medium">{selectedImage.name}</span>
+                        <span className="text-sm font-medium">
+                          {selectedImage.name}
+                        </span>
                         <span className="text-xs text-muted-foreground">
                           ({(selectedImage.size / 1024 / 1024).toFixed(1)} MB)
                         </span>
                       </div>
-                      <Button variant="ghost" size="sm" onClick={handleRemovePhoto}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={handleRemovePhoto}
+                      >
                         <X className="w-4 h-4" />
                       </Button>
                     </div>
@@ -307,7 +315,11 @@ export default function Community() {
 
                 <div className="flex justify-between items-center">
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={handleAddPhoto}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleAddPhoto}
+                    >
                       <Camera className="w-4 h-4 mr-2" />
                       Add Photo/Video
                     </Button>
@@ -382,7 +394,7 @@ export default function Community() {
                           </div>
                         )}
 
-                                                <div className="flex items-center gap-4 pt-2">
+                        <div className="flex items-center gap-4 pt-2">
                           <Button
                             variant="ghost"
                             size="sm"
@@ -456,7 +468,7 @@ export default function Community() {
                           </div>
                         )}
 
-                                                <div className="flex items-center gap-4 pt-2">
+                        <div className="flex items-center gap-4 pt-2">
                           <Button
                             variant="ghost"
                             size="sm"
@@ -526,10 +538,12 @@ export default function Community() {
                     <div className="text-sm text-muted-foreground">
                       {challenge.daysLeft} days left
                     </div>
-                                        <Button
+                    <Button
                       size="sm"
                       className="w-full"
-                      onClick={() => handleJoinChallenge(challenge.id, challenge.title)}
+                      onClick={() =>
+                        handleJoinChallenge(challenge.id, challenge.title)
+                      }
                     >
                       <Zap className="w-4 h-4 mr-2" />
                       Join Challenge
