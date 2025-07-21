@@ -28,18 +28,16 @@ import {
   Edit,
 } from "lucide-react";
 import { useState } from "react";
-import { getUserStats } from "@/lib/stats";
 
 export default function Profile() {
   const [newPost, setNewPost] = useState("");
-  const globalStats = getUserStats();
 
-  // Generate realistic user profile stats
+  // Mock data for user profile
   const userStats = {
-    coursesCompleted: Math.floor(3 + Math.random() * 12), // 3-15 courses
-    daysTraining: Math.floor(20 + Math.random() * 120), // 20-140 days
-    totalHours: Math.floor(25 + Math.random() * 200), // 25-225 hours
-    currentStreak: Math.floor(1 + Math.random() * 30), // 1-30 day streak
+    coursesCompleted: 8,
+    daysTraining: 45,
+    totalHours: 87,
+    currentStreak: 12,
   };
 
   const progressPosts = [
