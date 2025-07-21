@@ -21,26 +21,26 @@ export function Navigation() {
                 filter: "contrast(1.2) brightness(1.1)",
               }}
             />
-                        <span className="font-bold text-xl text-white">Gojo</span>
+                                    <span className="font-bold text-xl text-white">Gojo</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/courses"
-                            className="text-white/80 hover:text-white transition-colors"
+                                          className="text-white font-bold hover:text-red-500 transition-colors"
             >
               Courses
             </Link>
             <Link
               to="/community"
-                            className="text-white/80 hover:text-white transition-colors"
+                                          className="text-white font-bold hover:text-red-500 transition-colors"
             >
               Community
             </Link>
             <Link
               to="/about"
-                            className="text-white/80 hover:text-white transition-colors"
+                                          className="text-white font-bold hover:text-red-500 transition-colors"
             >
               About
             </Link>
@@ -81,21 +81,21 @@ export function Navigation() {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border mt-4">
               <Link
                 to="/courses"
-                                className="block px-3 py-2 text-base font-medium text-white/80 hover:text-white"
+                                                className="block px-3 py-2 text-base font-bold text-white hover:text-red-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Courses
               </Link>
               <Link
                 to="/community"
-                                className="block px-3 py-2 text-base font-medium text-white/80 hover:text-white"
+                                                className="block px-3 py-2 text-base font-bold text-white hover:text-red-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Community
               </Link>
               <Link
                 to="/about"
-                                className="block px-3 py-2 text-base font-medium text-white/80 hover:text-white"
+                                                className="block px-3 py-2 text-base font-bold text-white hover:text-red-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
