@@ -31,15 +31,11 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
-import { getCommunityStats, getChallengeStats } from "@/lib/stats";
 
 export default function Community() {
   const [newPost, setNewPost] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const communityStats = getCommunityStats();
-  const challengeParticipants = getChallengeStats();
 
   // Mock community data
   const featuredPosts = [
@@ -129,12 +125,12 @@ export default function Community() {
     },
   ];
 
-    const challenges = [
+      const challenges = [
     {
       id: 1,
       title: "30-Day Technique Challenge",
       description: "Practice one new technique every day for 30 days",
-      participants: challengeParticipants[0],
+      participants: 1247,
       daysLeft: 12,
       difficulty: "Beginner",
     },
@@ -142,7 +138,7 @@ export default function Community() {
       id: 2,
       title: "Flexibility Master",
       description: "Improve your flexibility with daily stretching routines",
-      participants: challengeParticipants[1],
+      participants: 856,
       daysLeft: 18,
       difficulty: "All Levels",
     },
@@ -150,7 +146,7 @@ export default function Community() {
       id: 3,
       title: "Forms Perfection",
       description: "Master traditional martial arts forms and kata",
-      participants: challengeParticipants[2],
+      participants: 543,
       daysLeft: 25,
       difficulty: "Intermediate",
     },
@@ -241,8 +237,8 @@ export default function Community() {
             Join the Gojo Community
           </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Connect with fellow martial artists, share your progress, get
-            motivated, and learn from each other. Over {communityStats.activeMembers.replace('+', '')} students training
+                        Connect with fellow martial artists, share your progress, get
+            motivated, and learn from each other. Over 10,000 students training
             together worldwide.
           </p>
         </div>
@@ -251,22 +247,22 @@ export default function Community() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <Card className="text-center p-4">
             <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <div className="text-2xl font-bold text-primary">{communityStats.activeMembers}</div>
+                                    <div className="text-2xl font-bold text-primary">10K+</div>
             <div className="text-sm text-muted-foreground">Active Members</div>
           </Card>
           <Card className="text-center p-4">
             <MessageCircle className="w-8 h-8 text-accent mx-auto mb-2" />
-                        <div className="text-2xl font-bold text-accent">{communityStats.postsShared}</div>
+                                    <div className="text-2xl font-bold text-accent">50K+</div>
             <div className="text-sm text-muted-foreground">Posts Shared</div>
           </Card>
           <Card className="text-center p-4">
             <Trophy className="w-8 h-8 text-secondary mx-auto mb-2" />
-                        <div className="text-2xl font-bold text-secondary">{communityStats.goalsAchieved}</div>
+                                    <div className="text-2xl font-bold text-secondary">1.2K</div>
             <div className="text-sm text-muted-foreground">Goals Achieved</div>
           </Card>
           <Card className="text-center p-4">
             <Globe className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <div className="text-2xl font-bold text-primary">{communityStats.countries}</div>
+                                    <div className="text-2xl font-bold text-primary">67</div>
             <div className="text-sm text-muted-foreground">Countries</div>
           </Card>
         </div>
