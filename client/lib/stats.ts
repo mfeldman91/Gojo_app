@@ -119,7 +119,7 @@ export function getHomepageStats() {
   const stats = getUserStats();
   return {
     totalStudents: `${Math.floor(stats.totalUsers / 1000)}K+`,
-    expertInstructors: `${globalStats.totalInstructors}+`,
+    expertInstructors: `${stats.totalInstructors}+`,
     hoursContent: `${Math.floor(stats.totalCourses * 8.5)}+`, // ~8.5 hours per course
     rating: stats.averageRating.toFixed(1),
     activeInstructors: `${Math.floor(stats.totalInstructors * 0.8)}+`, // 80% active
