@@ -29,11 +29,19 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import { getInstructorStats, getCourseStats } from "@/lib/stats";
 
 export default function InstructorDashboard() {
-  const instructorStats = getInstructorStats();
-  const courseStats = getCourseStats();
+  // Mock instructor data
+  const instructorStats = {
+    totalRevenue: 47500,
+    monthlyRevenue: 8200,
+    totalStudents: 847,
+    newStudents: 34,
+    averageRating: 4.9,
+    totalReviews: 234,
+    coursesPublished: 12,
+    coursesInDraft: 2,
+  };
 
     const courses = [
     {
