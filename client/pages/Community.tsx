@@ -525,7 +525,11 @@ export default function Community() {
                     <div className="text-sm text-muted-foreground">
                       {challenge.daysLeft} days left
                     </div>
-                    <Button size="sm" className="w-full">
+                                        <Button
+                      size="sm"
+                      className="w-full"
+                      onClick={() => handleJoinChallenge(challenge.id, challenge.title)}
+                    >
                       <Zap className="w-4 h-4 mr-2" />
                       Join Challenge
                     </Button>
