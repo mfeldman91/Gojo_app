@@ -37,79 +37,72 @@ export interface SignupData {
   agreedToTerms: boolean;
 }
 
-// Mock user database (in real app, this would be in a database)
-const USERS_KEY = 'gojo_users';
-const CURRENT_USER_KEY = 'gojo_current_user';
-const SESSION_KEY = 'gojo_session';
-
-// Utility functions for local storage
-const getStoredUsers = (): User[] => {
+// Session management using Supabase
+export const getCurrentUser = async (): Promise<User | null> => {
   try {
-    const users = localStorage.getItem(USERS_KEY);
-    return users ? JSON.parse(users) : [];
-  } catch {
-    return [];
-  }
-};
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return null;
 
-const storeUsers = (users: User[]) => {
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
-};
+    // Get user profile from our users table
+    const profile = await supabaseAuth.getUserProfile(user.id);
+    if (!profile) return null;
 
-const generateUserId = () => {
-  return 'user_' + Math.random().toString(36).substr(2, 9);
-};
-
-// Session management
-export const createSession = (user: User, rememberMe = false) => {
-  const sessionData = {
-    user,
-    expiresAt: rememberMe 
-      ? Date.now() + (30 * 24 * 60 * 60 * 1000) // 30 days
-      : Date.now() + (24 * 60 * 60 * 1000), // 1 day
-    rememberMe
-  };
-  
-  localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
-  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
-};
-
-export const getSession = () => {
-  try {
-    const session = localStorage.getItem(SESSION_KEY);
-    if (!session) return null;
-    
-    const sessionData = JSON.parse(session);
-    if (Date.now() > sessionData.expiresAt) {
-      clearSession();
-      return null;
-    }
-    
-    return sessionData;
-  } catch {
+    return {
+      id: profile.id,
+      email: profile.email,
+      firstName: profile.first_name,
+      lastName: profile.last_name,
+      avatar: profile.avatar_url,
+      role: profile.role,
+      createdAt: profile.created_at,
+    };
+  } catch (error) {
+    console.error('Get current user error:', error);
     return null;
   }
 };
 
-export const getCurrentUser = (): User | null => {
-  const session = getSession();
-  if (!session) return null;
-  
-  try {
-    const user = localStorage.getItem(CURRENT_USER_KEY);
-    return user ? JSON.parse(user) : null;
-  } catch {
-    return null;
-  }
+export const getCurrentUserSync = (): User | null => {
+  // For compatibility with existing code that expects synchronous access
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    getCurrentUser().then(setUser);
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (session?.user) {
+        const profile = await supabaseAuth.getUserProfile(session.user.id);
+        if (profile) {
+          setUser({
+            id: profile.id,
+            email: profile.email,
+            firstName: profile.first_name,
+            lastName: profile.last_name,
+            avatar: profile.avatar_url,
+            role: profile.role,
+            createdAt: profile.created_at,
+          });
+        }
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  return user;
 };
 
-export const clearSession = () => {
-  localStorage.removeItem(SESSION_KEY);
-  localStorage.removeItem(CURRENT_USER_KEY);
+export const isAuthenticated = async (): Promise<boolean> => {
+  const session = await supabaseAuth.getCurrentSession();
+  return session !== null;
 };
 
-export const isAuthenticated = (): boolean => {
-  return getSession() !== null;
+// For immediate sync check (less reliable but faster)
+export const isAuthenticatedSync = (): boolean => {
+  const user = getCurrentUserSync();
+  return user !== null;
 };
 
 // Mock API functions
