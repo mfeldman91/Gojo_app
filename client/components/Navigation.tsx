@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, User, LogOut } from "lucide-react";
+import { useState, useEffect } from "react";
+import { getCurrentUser, logout } from "@/lib/auth";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
