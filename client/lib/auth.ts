@@ -106,73 +106,96 @@ export const isAuthenticatedSync = (): boolean => {
   return user !== null;
 };
 
-// Mock API functions
+// Authentication functions using Supabase
 export const login = async (credentials: LoginCredentials): Promise<{ success: boolean; user?: User; error?: string }> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  
-  const users = getStoredUsers();
-  const user = users.find(u => u.email.toLowerCase() === credentials.email.toLowerCase());
-  
-  if (!user) {
-    return { success: false, error: 'No account found with this email address' };
+  try {
+    const result = await supabaseAuth.signIn({
+      email: credentials.email,
+      password: credentials.password,
+    });
+
+    if (!result.success) {
+      return { success: false, error: result.error };
+    }
+
+    if (result.user) {
+      const profile = await supabaseAuth.getUserProfile(result.user.id);
+      if (profile) {
+        const user: User = {
+          id: profile.id,
+          email: profile.email,
+          firstName: profile.first_name,
+          lastName: profile.last_name,
+          avatar: profile.avatar_url,
+          role: profile.role,
+          createdAt: profile.created_at,
+        };
+        return { success: true, user };
+      }
+    }
+
+    return { success: false, error: 'Failed to load user profile' };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Login failed'
+    };
   }
-  
-  // In real app, password would be hashed and compared
-  // For demo, we'll just check if password is not empty
-  if (!credentials.password) {
-    return { success: false, error: 'Password is required' };
-  }
-  
-  // Create session
-  createSession(user, credentials.rememberMe);
-  
-  return { success: true, user };
 };
 
 export const signup = async (signupData: SignupData): Promise<{ success: boolean; user?: User; error?: string }> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1500));
-  
-  const users = getStoredUsers();
-  
-  // Check if user already exists
-  const existingUser = users.find(u => u.email.toLowerCase() === signupData.email.toLowerCase());
-  if (existingUser) {
-    return { success: false, error: 'An account with this email already exists' };
+  try {
+    // Validate signup data
+    if (signupData.password !== signupData.confirmPassword) {
+      return { success: false, error: 'Passwords do not match' };
+    }
+
+    if (!signupData.agreedToTerms) {
+      return { success: false, error: 'You must agree to the terms and conditions' };
+    }
+
+    const result = await supabaseAuth.signUp({
+      email: signupData.email,
+      password: signupData.password,
+      firstName: signupData.firstName,
+      lastName: signupData.lastName,
+      role: 'student', // Default role
+    });
+
+    if (!result.success) {
+      return { success: false, error: result.error };
+    }
+
+    if (result.user) {
+      // Wait a moment for the trigger to create the user profile
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      const profile = await supabaseAuth.getUserProfile(result.user.id);
+      if (profile) {
+        const user: User = {
+          id: profile.id,
+          email: profile.email,
+          firstName: profile.first_name,
+          lastName: profile.last_name,
+          avatar: profile.avatar_url,
+          role: profile.role,
+          createdAt: profile.created_at,
+          experience: signupData.experience,
+          martialArtsInterest: signupData.martialArtsInterest,
+          goals: signupData.goals,
+          plan: signupData.plan,
+        };
+        return { success: true, user };
+      }
+    }
+
+    return { success: false, error: 'Failed to create user profile' };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Signup failed'
+    };
   }
-  
-  // Validate signup data
-  if (signupData.password !== signupData.confirmPassword) {
-    return { success: false, error: 'Passwords do not match' };
-  }
-  
-  if (!signupData.agreedToTerms) {
-    return { success: false, error: 'You must agree to the terms and conditions' };
-  }
-  
-  // Create new user
-  const newUser: User = {
-    id: generateUserId(),
-    email: signupData.email,
-    firstName: signupData.firstName,
-    lastName: signupData.lastName,
-    dateOfBirth: signupData.dateOfBirth,
-    experience: signupData.experience,
-    martialArtsInterest: signupData.martialArtsInterest,
-    goals: signupData.goals,
-    plan: signupData.plan,
-    createdAt: new Date().toISOString(),
-  };
-  
-  // Store user
-  users.push(newUser);
-  storeUsers(users);
-  
-  // Create session
-  createSession(newUser, true); // Remember user after signup
-  
-  return { success: true, user: newUser };
 };
 
 export const logout = () => {
