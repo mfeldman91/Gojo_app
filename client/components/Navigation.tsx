@@ -18,7 +18,9 @@ export function Navigation() {
     checkUser();
 
     // Listen for auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session?.user) {
         const currentUser = await getCurrentUser();
         setUser(currentUser);

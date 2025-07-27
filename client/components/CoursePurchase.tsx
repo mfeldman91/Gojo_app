@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { loadStripe } from '@stripe/stripe-js';
-import { 
-  CreditCard, 
-  Lock, 
-  CheckCircle, 
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  CreditCard,
+  Lock,
+  CheckCircle,
   Loader2,
   Play,
   Clock,
   Users,
-  Star
-} from 'lucide-react';
-import { getCurrentUser } from '@/lib/auth';
-import { createPaymentIntent } from '@/lib/auth-supabase';
+  Star,
+} from "lucide-react";
+import { getCurrentUser } from "@/lib/auth";
+import { createPaymentIntent } from "@/lib/auth-supabase";
 
 interface Course {
   id: string;
@@ -37,18 +37,18 @@ interface CoursePurchaseProps {
   onPurchaseComplete?: () => void;
 }
 
-export default function CoursePurchase({ 
-  course, 
-  instructorStripeId, 
-  onPurchaseComplete 
+export default function CoursePurchase({
+  course,
+  instructorStripeId,
+  onPurchaseComplete,
 }: CoursePurchaseProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const formatPrice = (amount: number, currency: string = 'USD') => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
+  const formatPrice = (amount: number, currency: string = "USD") => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
       currency: currency.toUpperCase(),
     }).format(amount);
   };
@@ -61,7 +61,8 @@ export default function CoursePurchase({
       // Check if user is logged in
       const user = await getCurrentUser();
       if (!user) {
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+        window.location.href =
+          "/login?redirect=" + encodeURIComponent(window.location.pathname);
         return;
       }
 
@@ -69,17 +70,19 @@ export default function CoursePurchase({
       const result = await createPaymentIntent(
         course.id,
         Math.round(course.price * 100), // Convert to cents
-        instructorStripeId
+        instructorStripeId,
       );
 
       if (!result.success) {
-        throw new Error(result.error || 'Failed to create payment');
+        throw new Error(result.error || "Failed to create payment");
       }
 
       // Initialize Stripe
-      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+      const stripe = await loadStripe(
+        import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY,
+      );
       if (!stripe) {
-        throw new Error('Stripe failed to load');
+        throw new Error("Stripe failed to load");
       }
 
       // Redirect to Stripe Checkout
@@ -90,10 +93,9 @@ export default function CoursePurchase({
       if (stripeError) {
         throw new Error(stripeError.message);
       }
-
     } catch (err) {
-      console.error('Purchase error:', err);
-      setError(err instanceof Error ? err.message : 'Purchase failed');
+      console.error("Purchase error:", err);
+      setError(err instanceof Error ? err.message : "Purchase failed");
     } finally {
       setIsProcessing(false);
     }
@@ -105,7 +107,8 @@ export default function CoursePurchase({
     try {
       const user = await getCurrentUser();
       if (!user) {
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+        window.location.href =
+          "/login?redirect=" + encodeURIComponent(window.location.pathname);
         return;
       }
 
@@ -113,7 +116,7 @@ export default function CoursePurchase({
       setSuccess(true);
       onPurchaseComplete?.();
     } catch (err) {
-      setError('Failed to enroll in course');
+      setError("Failed to enroll in course");
     } finally {
       setIsProcessing(false);
     }
@@ -147,8 +150,8 @@ export default function CoursePurchase({
         {/* Course Preview */}
         <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center relative overflow-hidden">
           {course.thumbnail_url ? (
-            <img 
-              src={course.thumbnail_url} 
+            <img
+              src={course.thumbnail_url}
               alt={course.title}
               className="w-full h-full object-cover"
             />
@@ -227,15 +230,17 @@ export default function CoursePurchase({
             </span>
             <span className="font-medium">{course.duration_hours}h</span>
           </div>
-          
+
           <div className="flex items-center justify-between text-sm">
             <span className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               Students
             </span>
-            <span className="font-medium">{course.students_count.toLocaleString()}</span>
+            <span className="font-medium">
+              {course.students_count.toLocaleString()}
+            </span>
           </div>
-          
+
           <div className="flex items-center justify-between text-sm">
             <span className="flex items-center gap-2">
               <Star className="w-4 h-4" />

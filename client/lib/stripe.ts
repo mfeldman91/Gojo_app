@@ -1,9 +1,11 @@
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 
 const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
 if (!stripePublishableKey) {
-  throw new Error('Missing Stripe publishable key. Please set VITE_STRIPE_PUBLISHABLE_KEY environment variable.');
+  throw new Error(
+    "Missing Stripe publishable key. Please set VITE_STRIPE_PUBLISHABLE_KEY environment variable.",
+  );
 }
 
 // Initialize Stripe
@@ -34,9 +36,12 @@ export interface StripeConnectAccount {
 }
 
 // Helper functions for price formatting
-export const formatPrice = (amount: number, currency: string = 'USD'): string => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
+export const formatPrice = (
+  amount: number,
+  currency: string = "USD",
+): string => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
     currency: currency.toUpperCase(),
   }).format(amount);
 };

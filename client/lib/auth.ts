@@ -1,7 +1,7 @@
 // Authentication service using Supabase
-import { useState, useEffect } from 'react';
-import * as supabaseAuth from './auth-supabase';
-import { supabase } from './supabase';
+import { useState, useEffect } from "react";
+import * as supabaseAuth from "./auth-supabase";
+import { supabase } from "./supabase";
 
 export interface User {
   id: string;
@@ -15,7 +15,7 @@ export interface User {
   plan?: string;
   createdAt: string;
   avatar?: string;
-  role?: 'student' | 'instructor' | 'admin';
+  role?: "student" | "instructor" | "admin";
 }
 
 export interface LoginCredentials {
@@ -41,7 +41,9 @@ export interface SignupData {
 // Session management using Supabase
 export const getCurrentUser = async (): Promise<User | null> => {
   try {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) return null;
 
     // Get user profile from our users table
@@ -58,7 +60,7 @@ export const getCurrentUser = async (): Promise<User | null> => {
       createdAt: profile.created_at,
     };
   } catch (error) {
-    console.error('Get current user error:', error);
+    console.error("Get current user error:", error);
     return null;
   }
 };
@@ -70,7 +72,9 @@ export const getCurrentUserSync = (): User | null => {
   useEffect(() => {
     getCurrentUser().then(setUser);
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session?.user) {
         const profile = await supabaseAuth.getUserProfile(session.user.id);
         if (profile) {
@@ -107,7 +111,9 @@ export const isAuthenticatedSync = (): boolean => {
 };
 
 // Authentication functions using Supabase
-export const login = async (credentials: LoginCredentials): Promise<{ success: boolean; user?: User; error?: string }> => {
+export const login = async (
+  credentials: LoginCredentials,
+): Promise<{ success: boolean; user?: User; error?: string }> => {
   try {
     const result = await supabaseAuth.signIn({
       email: credentials.email,
@@ -134,24 +140,29 @@ export const login = async (credentials: LoginCredentials): Promise<{ success: b
       }
     }
 
-    return { success: false, error: 'Failed to load user profile' };
+    return { success: false, error: "Failed to load user profile" };
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Login failed'
+      error: error instanceof Error ? error.message : "Login failed",
     };
   }
 };
 
-export const signup = async (signupData: SignupData): Promise<{ success: boolean; user?: User; error?: string }> => {
+export const signup = async (
+  signupData: SignupData,
+): Promise<{ success: boolean; user?: User; error?: string }> => {
   try {
     // Validate signup data
     if (signupData.password !== signupData.confirmPassword) {
-      return { success: false, error: 'Passwords do not match' };
+      return { success: false, error: "Passwords do not match" };
     }
 
     if (!signupData.agreedToTerms) {
-      return { success: false, error: 'You must agree to the terms and conditions' };
+      return {
+        success: false,
+        error: "You must agree to the terms and conditions",
+      };
     }
 
     const result = await supabaseAuth.signUp({
@@ -159,7 +170,7 @@ export const signup = async (signupData: SignupData): Promise<{ success: boolean
       password: signupData.password,
       firstName: signupData.firstName,
       lastName: signupData.lastName,
-      role: 'student', // Default role
+      role: "student", // Default role
     });
 
     if (!result.success) {
@@ -168,7 +179,7 @@ export const signup = async (signupData: SignupData): Promise<{ success: boolean
 
     if (result.user) {
       // Wait a moment for the trigger to create the user profile
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       const profile = await supabaseAuth.getUserProfile(result.user.id);
       if (profile) {
@@ -189,11 +200,11 @@ export const signup = async (signupData: SignupData): Promise<{ success: boolean
       }
     }
 
-    return { success: false, error: 'Failed to create user profile' };
+    return { success: false, error: "Failed to create user profile" };
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Signup failed'
+      error: error instanceof Error ? error.message : "Signup failed",
     };
   }
 };
@@ -205,15 +216,17 @@ export const logout = async () => {
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Logout failed'
+      error: error instanceof Error ? error.message : "Logout failed",
     };
   }
 };
 
 // Social login with Google
-export const socialLogin = async (provider: 'google' | 'apple'): Promise<{ success: boolean; user?: User; error?: string }> => {
+export const socialLogin = async (
+  provider: "google" | "apple",
+): Promise<{ success: boolean; user?: User; error?: string }> => {
   try {
-    if (provider === 'google') {
+    if (provider === "google") {
       const result = await supabaseAuth.signInWithGoogle();
       if (!result.success) {
         return { success: false, error: result.error };
@@ -224,34 +237,38 @@ export const socialLogin = async (provider: 'google' | 'apple'): Promise<{ succe
     }
 
     // Apple login not implemented yet
-    return { success: false, error: 'Apple login not yet implemented' };
+    return { success: false, error: "Apple login not yet implemented" };
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Social login failed'
+      error: error instanceof Error ? error.message : "Social login failed",
     };
   }
 };
 
 // Password reset using Supabase
-export const requestPasswordReset = async (email: string): Promise<{ success: boolean; message?: string; error?: string }> => {
+export const requestPasswordReset = async (
+  email: string,
+): Promise<{ success: boolean; message?: string; error?: string }> => {
   try {
     const result = await supabaseAuth.resetPassword(email);
     return result;
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Password reset failed'
+      error: error instanceof Error ? error.message : "Password reset failed",
     };
   }
 };
 
 // Profile update using Supabase
-export const updateProfile = async (updates: Partial<User>): Promise<{ success: boolean; user?: User; error?: string }> => {
+export const updateProfile = async (
+  updates: Partial<User>,
+): Promise<{ success: boolean; user?: User; error?: string }> => {
   try {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
-      return { success: false, error: 'Not authenticated' };
+      return { success: false, error: "Not authenticated" };
     }
 
     const result = await supabaseAuth.updateUserProfile(currentUser.id, {
@@ -270,7 +287,7 @@ export const updateProfile = async (updates: Partial<User>): Promise<{ success: 
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Update failed'
+      error: error instanceof Error ? error.message : "Update failed",
     };
   }
 };
@@ -284,12 +301,14 @@ export const getUserStats = (userId: string) => {
     totalWatchTime: Math.floor(Math.random() * 100) + 20,
     currentStreak: Math.floor(Math.random() * 30) + 1,
     achievements: Math.floor(Math.random() * 15) + 3,
-    joinDate: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString(),
+    joinDate: new Date(
+      Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000,
+    ).toISOString(),
   };
 };
 
 // Initialize - no longer needed with Supabase
 export const initializeDemoUsers = () => {
   // No longer needed - users are stored in Supabase
-  console.log('Demo users initialization not needed with Supabase');
+  console.log("Demo users initialization not needed with Supabase");
 };

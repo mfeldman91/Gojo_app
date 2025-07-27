@@ -1,47 +1,54 @@
-import { Handler } from '@netlify/functions';
-import Stripe from 'stripe';
+import { Handler } from "@netlify/functions";
+import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
+  apiVersion: "2024-06-20",
 });
 
 export const handler: Handler = async (event, context) => {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
   };
 
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
   }
 
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ error: 'Method not allowed' }),
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
   try {
-    const { 
-      courseId, 
+    const {
+      courseId,
       courseName,
-      coursePrice, 
-      currency = 'USD', 
+      coursePrice,
+      currency = "USD",
       instructorStripeId,
       userId,
       successUrl,
-      cancelUrl 
-    } = JSON.parse(event.body || '{}');
+      cancelUrl,
+    } = JSON.parse(event.body || "{}");
 
-    if (!courseId || !courseName || !coursePrice || !instructorStripeId || !userId) {
+    if (
+      !courseId ||
+      !courseName ||
+      !coursePrice ||
+      !instructorStripeId ||
+      !userId
+    ) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ 
-          error: 'Missing required fields: courseId, courseName, coursePrice, instructorStripeId, userId' 
+        body: JSON.stringify({
+          error:
+            "Missing required fields: courseId, courseName, coursePrice, instructorStripeId, userId",
         }),
       };
     }
@@ -51,7 +58,7 @@ export const handler: Handler = async (event, context) => {
 
     // Create Checkout Session
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ["card"],
       line_items: [
         {
           price_data: {
@@ -65,9 +72,13 @@ export const handler: Handler = async (event, context) => {
           quantity: 1,
         },
       ],
-      mode: 'payment',
-      success_url: successUrl || `${process.env.URL || 'http://localhost:8888'}/course/${courseId}?success=true`,
-      cancel_url: cancelUrl || `${process.env.URL || 'http://localhost:8888'}/course/${courseId}`,
+      mode: "payment",
+      success_url:
+        successUrl ||
+        `${process.env.URL || "http://localhost:8888"}/course/${courseId}?success=true`,
+      cancel_url:
+        cancelUrl ||
+        `${process.env.URL || "http://localhost:8888"}/course/${courseId}`,
       metadata: {
         courseId,
         userId,
@@ -81,10 +92,10 @@ export const handler: Handler = async (event, context) => {
         metadata: {
           courseId,
           userId,
-          type: 'course_purchase',
+          type: "course_purchase",
         },
       },
-      customer_email: event.headers['user-email'] || undefined,
+      customer_email: event.headers["user-email"] || undefined,
     });
 
     return {
@@ -96,14 +107,14 @@ export const handler: Handler = async (event, context) => {
       }),
     };
   } catch (error) {
-    console.error('Error creating checkout session:', error);
-    
+    console.error("Error creating checkout session:", error);
+
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ 
-        error: 'Failed to create checkout session',
-        details: error instanceof Error ? error.message : 'Unknown error'
+      body: JSON.stringify({
+        error: "Failed to create checkout session",
+        details: error instanceof Error ? error.message : "Unknown error",
       }),
     };
   }

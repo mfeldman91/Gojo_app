@@ -19,7 +19,7 @@ Your Gojo martial arts marketplace now has:
 
 1. Go to your Supabase project dashboard
 2. Click **SQL Editor** in the sidebar
-3. Copy the content from `database/schema.sql` 
+3. Copy the content from `database/schema.sql`
 4. Paste and run it in the SQL Editor
 5. This creates all tables for users, instructors, courses, payments, etc.
 
@@ -44,12 +44,14 @@ Your Gojo martial arts marketplace now has:
 ## 🚀 **How It Works Now**
 
 ### **For Students:**
+
 1. **Quick Signup** via Google OAuth or email
 2. **Browse Courses** and make payments
 3. **Automatic enrollment** after successful payment
 4. **Progress tracking** and community access
 
 ### **For Instructors:**
+
 1. **Extended Onboarding** at `/instructor/onboarding`
 2. **Stripe Connect** setup for receiving payments
 3. **Course Creation** and management
@@ -57,6 +59,7 @@ Your Gojo martial arts marketplace now has:
 5. **Admin approval** process for verification
 
 ### **Payment Flow:**
+
 1. Student purchases course → Stripe processes payment
 2. **Platform takes 10%** application fee
 3. **Instructor receives 90%** automatically via Stripe Connect

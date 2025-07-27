@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Upload, X, Image, FileText, Loader2 } from 'lucide-react';
+import { useState, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Upload, X, Image, FileText, Loader2 } from "lucide-react";
 
 interface FileUploadProps {
   onUpload: (file: File) => Promise<string>; // Returns URL of uploaded file
@@ -18,7 +18,7 @@ export default function FileUpload({
   maxSizeMB = 5,
   placeholder = "Click to upload or drag and drop",
   currentUrl,
-  className = ""
+  className = "",
 }: FileUploadProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(currentUrl || null);
@@ -33,7 +33,7 @@ export default function FileUpload({
     }
 
     // Validate file type
-    if (accept && !file.type.match(accept.replace('*', '.*'))) {
+    if (accept && !file.type.match(accept.replace("*", ".*"))) {
       setError(`Invalid file type. Accepted: ${accept}`);
       return;
     }
@@ -43,7 +43,7 @@ export default function FileUpload({
 
     try {
       // Create preview for images
-      if (file.type.startsWith('image/')) {
+      if (file.type.startsWith("image/")) {
         const reader = new FileReader();
         reader.onload = (e) => setPreview(e.target?.result as string);
         reader.readAsDataURL(file);
@@ -53,7 +53,7 @@ export default function FileUpload({
       const url = await onUpload(file);
       setPreview(url);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Upload failed');
+      setError(err instanceof Error ? err.message : "Upload failed");
       setPreview(null);
     } finally {
       setIsUploading(false);
@@ -76,7 +76,7 @@ export default function FileUpload({
     setPreview(null);
     setError(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -108,7 +108,7 @@ export default function FileUpload({
                   <FileText className="w-12 h-12 text-muted-foreground" />
                 </div>
               )}
-              
+
               <Button
                 variant="destructive"
                 size="sm"
@@ -123,7 +123,7 @@ export default function FileUpload({
       ) : (
         <Card
           className={`border-2 border-dashed cursor-pointer transition-colors hover:border-primary/50 ${
-            isUploading ? 'border-primary bg-primary/5' : 'border-muted'
+            isUploading ? "border-primary bg-primary/5" : "border-muted"
           }`}
           onClick={handleClick}
           onDrop={handleDrop}
@@ -143,7 +143,10 @@ export default function FileUpload({
                   <div>
                     <p className="text-sm font-medium">{placeholder}</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      {accept.includes('image') ? 'PNG, JPG, GIF' : 'Various formats'} up to {maxSizeMB}MB
+                      {accept.includes("image")
+                        ? "PNG, JPG, GIF"
+                        : "Various formats"}{" "}
+                      up to {maxSizeMB}MB
                     </p>
                   </div>
                 </>

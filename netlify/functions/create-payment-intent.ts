@@ -1,39 +1,44 @@
-import { Handler } from '@netlify/functions';
-import Stripe from 'stripe';
+import { Handler } from "@netlify/functions";
+import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
+  apiVersion: "2024-06-20",
 });
 
 export const handler: Handler = async (event, context) => {
   // Enable CORS
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
   };
 
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
   }
 
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ error: 'Method not allowed' }),
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
   try {
-    const { courseId, amount, currency = 'USD', instructorId } = JSON.parse(event.body || '{}');
+    const {
+      courseId,
+      amount,
+      currency = "USD",
+      instructorId,
+    } = JSON.parse(event.body || "{}");
 
     if (!courseId || !amount || !instructorId) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ 
-          error: 'Missing required fields: courseId, amount, instructorId' 
+        body: JSON.stringify({
+          error: "Missing required fields: courseId, amount, instructorId",
         }),
       };
     }
@@ -64,14 +69,14 @@ export const handler: Handler = async (event, context) => {
       }),
     };
   } catch (error) {
-    console.error('Error creating payment intent:', error);
-    
+    console.error("Error creating payment intent:", error);
+
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ 
-        error: 'Failed to create payment intent',
-        details: error instanceof Error ? error.message : 'Unknown error'
+      body: JSON.stringify({
+        error: "Failed to create payment intent",
+        details: error instanceof Error ? error.message : "Unknown error",
       }),
     };
   }

@@ -1,48 +1,63 @@
-import { useState, useEffect } from 'react';
-import { Navigation } from '@/components/Navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Badge } from '@/components/ui/badge';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { 
-  User, 
-  FileText, 
-  CreditCard, 
-  CheckCircle, 
-  ArrowRight, 
+import { useState, useEffect } from "react";
+import { Navigation } from "@/components/Navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  User,
+  FileText,
+  CreditCard,
+  CheckCircle,
+  ArrowRight,
   ArrowLeft,
   Upload,
   Award,
-  DollarSign
-} from 'lucide-react';
-import { getCurrentUser } from '@/lib/auth';
-import * as supabaseAuth from '@/lib/auth-supabase';
+  DollarSign,
+} from "lucide-react";
+import { getCurrentUser } from "@/lib/auth";
+import * as supabaseAuth from "@/lib/auth-supabase";
 
 export default function InstructorOnboarding() {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
   const [formData, setFormData] = useState({
     // Personal Info
-    bio: '',
-    experience: '',
-    hourlyRate: '',
-    
+    bio: "",
+    experience: "",
+    hourlyRate: "",
+
     // Specialties & Qualifications
     martialArtsSpecialties: [] as string[],
     qualifications: [] as string[],
-    customQualification: '',
-    
+    customQualification: "",
+
     // Stripe Connect
-    stripeAccountId: '',
+    stripeAccountId: "",
     stripeOnboardingComplete: false,
-    
+
     // Agreements
     agreedToInstructorTerms: false,
     agreedToStripeTerms: false,
@@ -52,7 +67,7 @@ export default function InstructorOnboarding() {
     const loadUser = async () => {
       const user = await getCurrentUser();
       if (!user) {
-        window.location.href = '/login';
+        window.location.href = "/login";
         return;
       }
       setCurrentUser(user);
@@ -61,58 +76,73 @@ export default function InstructorOnboarding() {
   }, []);
 
   const martialArtsOptions = [
-    'Boxing', 'Muay Thai', 'Brazilian Jiu-Jitsu', 'Karate', 'Taekwondo',
-    'Wing Chun', 'Kung Fu', 'MMA', 'Self-Defense', 'Kickboxing',
-    'Judo', 'Aikido', 'Krav Maga', 'Capoeira', 'Wrestling'
+    "Boxing",
+    "Muay Thai",
+    "Brazilian Jiu-Jitsu",
+    "Karate",
+    "Taekwondo",
+    "Wing Chun",
+    "Kung Fu",
+    "MMA",
+    "Self-Defense",
+    "Kickboxing",
+    "Judo",
+    "Aikido",
+    "Krav Maga",
+    "Capoeira",
+    "Wrestling",
   ];
 
   const qualificationOptions = [
-    'Black Belt (1st Dan or higher)',
-    'Certified Instructor',
-    'Competition Winner',
-    'Professional Fighter',
-    'Gym Owner/Manager',
-    'Sports Science Degree',
-    'Personal Training Certification',
-    'Youth Coaching Certification',
+    "Black Belt (1st Dan or higher)",
+    "Certified Instructor",
+    "Competition Winner",
+    "Professional Fighter",
+    "Gym Owner/Manager",
+    "Sports Science Degree",
+    "Personal Training Certification",
+    "Youth Coaching Certification",
   ];
 
   const experienceOptions = [
-    { value: '1-2', label: '1-2 years' },
-    { value: '3-5', label: '3-5 years' },
-    { value: '5-10', label: '5-10 years' },
-    { value: '10-15', label: '10-15 years' },
-    { value: '15+', label: '15+ years' },
+    { value: "1-2", label: "1-2 years" },
+    { value: "3-5", label: "3-5 years" },
+    { value: "5-10", label: "5-10 years" },
+    { value: "10-15", label: "10-15 years" },
+    { value: "15+", label: "15+ years" },
   ];
 
   const handleInputChange = (field: string, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSpecialtyToggle = (specialty: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       martialArtsSpecialties: prev.martialArtsSpecialties.includes(specialty)
-        ? prev.martialArtsSpecialties.filter(s => s !== specialty)
-        : [...prev.martialArtsSpecialties, specialty]
+        ? prev.martialArtsSpecialties.filter((s) => s !== specialty)
+        : [...prev.martialArtsSpecialties, specialty],
     }));
   };
 
   const handleQualificationToggle = (qualification: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       qualifications: prev.qualifications.includes(qualification)
-        ? prev.qualifications.filter(q => q !== qualification)
-        : [...prev.qualifications, qualification]
+        ? prev.qualifications.filter((q) => q !== qualification)
+        : [...prev.qualifications, qualification],
     }));
   };
 
   const addCustomQualification = () => {
     if (formData.customQualification.trim()) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        qualifications: [...prev.qualifications, prev.customQualification.trim()],
-        customQualification: ''
+        qualifications: [
+          ...prev.qualifications,
+          prev.customQualification.trim(),
+        ],
+        customQualification: "",
       }));
     }
   };
@@ -127,18 +157,21 @@ export default function InstructorOnboarding() {
       const result = await supabaseAuth.createStripeConnectAccount(
         currentUser.email,
         currentUser.firstName,
-        currentUser.lastName
+        currentUser.lastName,
       );
 
       if (result.success) {
-        setFormData(prev => ({ ...prev, stripeAccountId: result.accountId }));
+        setFormData((prev) => ({ ...prev, stripeAccountId: result.accountId }));
         // Redirect to Stripe onboarding
         window.location.href = result.onboardingUrl;
       } else {
-        setMessage({ type: 'error', text: result.error || 'Failed to create Stripe account' });
+        setMessage({
+          type: "error",
+          text: result.error || "Failed to create Stripe account",
+        });
       }
     } catch (error) {
-      setMessage({ type: 'error', text: 'Failed to set up payment account' });
+      setMessage({ type: "error", text: "Failed to set up payment account" });
     } finally {
       setIsSubmitting(false);
     }
@@ -151,35 +184,48 @@ export default function InstructorOnboarding() {
     setMessage(null);
 
     try {
-      const result = await supabaseAuth.createInstructorProfile(currentUser.id, {
-        bio: formData.bio,
-        experience: formData.experience,
-        martial_arts_specialties: formData.martialArtsSpecialties,
-        qualifications: formData.qualifications,
-        hourly_rate: parseFloat(formData.hourlyRate),
-        stripe_account_id: formData.stripeAccountId,
-        stripe_onboarding_complete: formData.stripeOnboardingComplete,
-        verification_status: 'pending',
-      });
+      const result = await supabaseAuth.createInstructorProfile(
+        currentUser.id,
+        {
+          bio: formData.bio,
+          experience: formData.experience,
+          martial_arts_specialties: formData.martialArtsSpecialties,
+          qualifications: formData.qualifications,
+          hourly_rate: parseFloat(formData.hourlyRate),
+          stripe_account_id: formData.stripeAccountId,
+          stripe_onboarding_complete: formData.stripeOnboardingComplete,
+          verification_status: "pending",
+        },
+      );
 
       if (result.success) {
-        setMessage({ type: 'success', text: 'Instructor profile created successfully!' });
+        setMessage({
+          type: "success",
+          text: "Instructor profile created successfully!",
+        });
         setTimeout(() => {
-          window.location.href = '/instructor/dashboard';
+          window.location.href = "/instructor/dashboard";
         }, 2000);
       } else {
-        setMessage({ type: 'error', text: result.error || 'Failed to create instructor profile' });
+        setMessage({
+          type: "error",
+          text: result.error || "Failed to create instructor profile",
+        });
       }
     } catch (error) {
-      setMessage({ type: 'error', text: 'Failed to complete onboarding' });
+      setMessage({ type: "error", text: "Failed to complete onboarding" });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const canProceedStep1 = formData.bio.length >= 50 && formData.experience && formData.hourlyRate;
-  const canProceedStep2 = formData.martialArtsSpecialties.length > 0 && formData.qualifications.length > 0;
-  const canCompleteOnboarding = formData.agreedToInstructorTerms && formData.agreedToStripeTerms;
+  const canProceedStep1 =
+    formData.bio.length >= 50 && formData.experience && formData.hourlyRate;
+  const canProceedStep2 =
+    formData.martialArtsSpecialties.length > 0 &&
+    formData.qualifications.length > 0;
+  const canCompleteOnboarding =
+    formData.agreedToInstructorTerms && formData.agreedToStripeTerms;
 
   if (!currentUser) {
     return <div>Loading...</div>;
@@ -196,7 +242,8 @@ export default function InstructorOnboarding() {
             Become a Gojo Instructor
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join our community of elite martial arts instructors and start earning by sharing your expertise.
+            Join our community of elite martial arts instructors and start
+            earning by sharing your expertise.
           </p>
         </div>
 
@@ -205,17 +252,21 @@ export default function InstructorOnboarding() {
           <div className="flex items-center space-x-4">
             {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex items-center">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${
-                  step >= stepNumber
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground"
-                }`}>
+                <div
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${
+                    step >= stepNumber
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
                   {stepNumber}
                 </div>
                 {stepNumber < 3 && (
-                  <div className={`w-16 h-1 ml-4 ${
-                    step > stepNumber ? "bg-primary" : "bg-muted"
-                  }`} />
+                  <div
+                    className={`w-16 h-1 ml-4 ${
+                      step > stepNumber ? "bg-primary" : "bg-muted"
+                    }`}
+                  />
                 )}
               </div>
             ))}
@@ -230,8 +281,10 @@ export default function InstructorOnboarding() {
               {step === 3 && "Payment setup & agreements"}
             </CardTitle>
             <CardDescription>
-              {step === 1 && "Help students understand your background and teaching style"}
-              {step === 2 && "Show your martial arts specialties and credentials"}
+              {step === 1 &&
+                "Help students understand your background and teaching style"}
+              {step === 2 &&
+                "Show your martial arts specialties and credentials"}
               {step === 3 && "Set up payments and review terms"}
             </CardDescription>
           </CardHeader>
@@ -246,7 +299,7 @@ export default function InstructorOnboarding() {
                     id="bio"
                     placeholder="Tell students about your martial arts journey, teaching philosophy, and what makes your instruction unique..."
                     value={formData.bio}
-                    onChange={(e) => handleInputChange('bio', e.target.value)}
+                    onChange={(e) => handleInputChange("bio", e.target.value)}
                     className="min-h-[120px]"
                   />
                   <p className="text-xs text-muted-foreground">
@@ -257,7 +310,11 @@ export default function InstructorOnboarding() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="experience">Years of Experience</Label>
-                    <Select onValueChange={(value) => handleInputChange('experience', value)}>
+                    <Select
+                      onValueChange={(value) =>
+                        handleInputChange("experience", value)
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select experience level" />
                       </SelectTrigger>
@@ -281,7 +338,9 @@ export default function InstructorOnboarding() {
                         placeholder="50"
                         className="pl-10"
                         value={formData.hourlyRate}
-                        onChange={(e) => handleInputChange('hourlyRate', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("hourlyRate", e.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -293,20 +352,26 @@ export default function InstructorOnboarding() {
             {step === 2 && (
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <Label>Martial Arts Specialties (select all that apply)</Label>
+                  <Label>
+                    Martial Arts Specialties (select all that apply)
+                  </Label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                     {martialArtsOptions.map((specialty) => (
                       <label
                         key={specialty}
                         className={`flex items-center gap-2 p-3 border rounded-lg cursor-pointer transition-colors ${
                           formData.martialArtsSpecialties.includes(specialty)
-                            ? 'border-primary bg-primary/5'
-                            : 'border-border hover:border-primary/50'
+                            ? "border-primary bg-primary/5"
+                            : "border-border hover:border-primary/50"
                         }`}
                       >
                         <Checkbox
-                          checked={formData.martialArtsSpecialties.includes(specialty)}
-                          onCheckedChange={() => handleSpecialtyToggle(specialty)}
+                          checked={formData.martialArtsSpecialties.includes(
+                            specialty,
+                          )}
+                          onCheckedChange={() =>
+                            handleSpecialtyToggle(specialty)
+                          }
                         />
                         <span className="text-sm font-medium">{specialty}</span>
                       </label>
@@ -322,13 +387,17 @@ export default function InstructorOnboarding() {
                         key={qualification}
                         className={`flex items-center gap-2 p-3 border rounded-lg cursor-pointer transition-colors ${
                           formData.qualifications.includes(qualification)
-                            ? 'border-primary bg-primary/5'
-                            : 'border-border hover:border-primary/50'
+                            ? "border-primary bg-primary/5"
+                            : "border-border hover:border-primary/50"
                         }`}
                       >
                         <Checkbox
-                          checked={formData.qualifications.includes(qualification)}
-                          onCheckedChange={() => handleQualificationToggle(qualification)}
+                          checked={formData.qualifications.includes(
+                            qualification,
+                          )}
+                          onCheckedChange={() =>
+                            handleQualificationToggle(qualification)
+                          }
                         />
                         <span className="text-sm">{qualification}</span>
                       </label>
@@ -339,7 +408,9 @@ export default function InstructorOnboarding() {
                     <Input
                       placeholder="Add custom qualification..."
                       value={formData.customQualification}
-                      onChange={(e) => handleInputChange('customQualification', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("customQualification", e.target.value)
+                      }
                     />
                     <Button variant="outline" onClick={addCustomQualification}>
                       Add
@@ -357,22 +428,30 @@ export default function InstructorOnboarding() {
                     <CreditCard className="w-5 h-5" />
                     Payment Setup
                   </h3>
-                  
+
                   {!formData.stripeAccountId ? (
                     <div className="p-4 border rounded-lg">
                       <p className="text-sm text-muted-foreground mb-4">
-                        To receive payments from students, you'll need to set up a Stripe account. 
-                        This is secure and free - Stripe is used by millions of businesses worldwide.
+                        To receive payments from students, you'll need to set up
+                        a Stripe account. This is secure and free - Stripe is
+                        used by millions of businesses worldwide.
                       </p>
-                      <Button onClick={handleStripeSetup} disabled={isSubmitting}>
-                        {isSubmitting ? 'Setting up...' : 'Set Up Payment Account'}
+                      <Button
+                        onClick={handleStripeSetup}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting
+                          ? "Setting up..."
+                          : "Set Up Payment Account"}
                       </Button>
                     </div>
                   ) : (
                     <div className="p-4 border border-green-200 bg-green-50 rounded-lg">
                       <div className="flex items-center gap-2 text-green-800">
                         <CheckCircle className="w-5 h-5" />
-                        <span className="font-medium">Payment account connected!</span>
+                        <span className="font-medium">
+                          Payment account connected!
+                        </span>
                       </div>
                     </div>
                   )}
@@ -380,16 +459,21 @@ export default function InstructorOnboarding() {
 
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Agreements</h3>
-                  
+
                   <label className="flex items-start gap-3 p-4 border rounded-lg cursor-pointer">
                     <Checkbox
                       checked={formData.agreedToInstructorTerms}
-                      onCheckedChange={(checked) => handleInputChange('agreedToInstructorTerms', checked)}
+                      onCheckedChange={(checked) =>
+                        handleInputChange("agreedToInstructorTerms", checked)
+                      }
                     />
                     <div className="text-sm">
-                      <p className="font-medium">I agree to the Instructor Terms of Service</p>
+                      <p className="font-medium">
+                        I agree to the Instructor Terms of Service
+                      </p>
                       <p className="text-muted-foreground">
-                        Including content guidelines, payment terms (80% revenue share), and platform policies.
+                        Including content guidelines, payment terms (80% revenue
+                        share), and platform policies.
                       </p>
                     </div>
                   </label>
@@ -397,10 +481,14 @@ export default function InstructorOnboarding() {
                   <label className="flex items-start gap-3 p-4 border rounded-lg cursor-pointer">
                     <Checkbox
                       checked={formData.agreedToStripeTerms}
-                      onCheckedChange={(checked) => handleInputChange('agreedToStripeTerms', checked)}
+                      onCheckedChange={(checked) =>
+                        handleInputChange("agreedToStripeTerms", checked)
+                      }
                     />
                     <div className="text-sm">
-                      <p className="font-medium">I agree to Stripe's Terms of Service</p>
+                      <p className="font-medium">
+                        I agree to Stripe's Terms of Service
+                      </p>
                       <p className="text-muted-foreground">
                         Required for payment processing and instructor payouts.
                       </p>
@@ -412,11 +500,13 @@ export default function InstructorOnboarding() {
 
             {/* Message Display */}
             {message && (
-              <div className={`p-3 rounded-lg text-sm ${
-                message.type === 'success' 
-                  ? 'bg-green-100 text-green-800 border border-green-200' 
-                  : 'bg-red-100 text-red-800 border border-red-200'
-              }`}>
+              <div
+                className={`p-3 rounded-lg text-sm ${
+                  message.type === "success"
+                    ? "bg-green-100 text-green-800 border border-green-200"
+                    : "bg-red-100 text-red-800 border border-red-200"
+                }`}
+              >
                 {message.text}
               </div>
             )}

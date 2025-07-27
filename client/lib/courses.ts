@@ -1,5 +1,5 @@
-import { supabase } from './supabase';
-import { getCurrentUser } from './auth';
+import { supabase } from "./supabase";
+import { getCurrentUser } from "./auth";
 
 export interface Course {
   id: string;
@@ -9,9 +9,9 @@ export interface Course {
   price: number;
   currency: string;
   category: string;
-  difficulty_level: 'beginner' | 'intermediate' | 'advanced';
+  difficulty_level: "beginner" | "intermediate" | "advanced";
   duration_hours: number;
-  status: 'draft' | 'published' | 'archived';
+  status: "draft" | "published" | "archived";
   thumbnail_url?: string;
   video_url?: string;
   stripe_price_id?: string;
@@ -59,26 +59,30 @@ export const getCourses = async (filters?: {
 }) => {
   try {
     let query = supabase
-      .from('courses')
-      .select(`
+      .from("courses")
+      .select(
+        `
         *,
         instructor_profiles!inner(
           user_id,
           users!inner(first_name, last_name)
         )
-      `)
-      .eq('status', 'published');
+      `,
+      )
+      .eq("status", "published");
 
     if (filters?.category) {
-      query = query.eq('category', filters.category);
+      query = query.eq("category", filters.category);
     }
 
     if (filters?.difficulty) {
-      query = query.eq('difficulty_level', filters.difficulty);
+      query = query.eq("difficulty_level", filters.difficulty);
     }
 
     if (filters?.search) {
-      query = query.or(`title.ilike.%${filters.search}%,description.ilike.%${filters.search}%`);
+      query = query.or(
+        `title.ilike.%${filters.search}%,description.ilike.%${filters.search}%`,
+      );
     }
 
     if (filters?.limit) {
@@ -86,28 +90,34 @@ export const getCourses = async (filters?: {
     }
 
     if (filters?.offset) {
-      query = query.range(filters.offset, (filters.offset + (filters.limit || 10)) - 1);
+      query = query.range(
+        filters.offset,
+        filters.offset + (filters.limit || 10) - 1,
+      );
     }
 
-    const { data, error } = await query.order('created_at', { ascending: false });
+    const { data, error } = await query.order("created_at", {
+      ascending: false,
+    });
 
     if (error) throw error;
 
     // Transform data to include instructor name
-    const courses = data?.map(course => ({
-      ...course,
-      instructor_name: `${course.instructor_profiles.users.first_name} ${course.instructor_profiles.users.last_name}`,
-      students_count: Math.floor(Math.random() * 1000) + 50, // Mock data for now
-      rating: 4.5 + Math.random() * 0.5, // Mock data for now
-      reviews_count: Math.floor(Math.random() * 100) + 10, // Mock data for now
-    })) || [];
+    const courses =
+      data?.map((course) => ({
+        ...course,
+        instructor_name: `${course.instructor_profiles.users.first_name} ${course.instructor_profiles.users.last_name}`,
+        students_count: Math.floor(Math.random() * 1000) + 50, // Mock data for now
+        rating: 4.5 + Math.random() * 0.5, // Mock data for now
+        reviews_count: Math.floor(Math.random() * 100) + 10, // Mock data for now
+      })) || [];
 
     return { success: true, data: courses };
   } catch (error) {
-    console.error('Get courses error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to load courses' 
+    console.error("Get courses error:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to load courses",
     };
   }
 };
@@ -116,16 +126,18 @@ export const getCourses = async (filters?: {
 export const getCourse = async (courseId: string) => {
   try {
     const { data, error } = await supabase
-      .from('courses')
-      .select(`
+      .from("courses")
+      .select(
+        `
         *,
         instructor_profiles!inner(
           *,
           users!inner(first_name, last_name, avatar_url)
         ),
         lessons(*)
-      `)
-      .eq('id', courseId)
+      `,
+      )
+      .eq("id", courseId)
       .single();
 
     if (error) throw error;
@@ -133,15 +145,15 @@ export const getCourse = async (courseId: string) => {
     // Check if current user is enrolled
     const user = await getCurrentUser();
     let isEnrolled = false;
-    
+
     if (user) {
       const { data: enrollment } = await supabase
-        .from('enrollments')
-        .select('id')
-        .eq('user_id', user.id)
-        .eq('course_id', courseId)
+        .from("enrollments")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("course_id", courseId)
         .single();
-      
+
       isEnrolled = !!enrollment;
     }
 
@@ -157,10 +169,10 @@ export const getCourse = async (courseId: string) => {
 
     return { success: true, data: course };
   } catch (error) {
-    console.error('Get course error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to load course' 
+    console.error("Get course error:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to load course",
     };
   }
 };
@@ -170,27 +182,27 @@ export const createCourse = async (courseData: Partial<Course>) => {
   try {
     const user = await getCurrentUser();
     if (!user) {
-      return { success: false, error: 'Not authenticated' };
+      return { success: false, error: "Not authenticated" };
     }
 
     // Get instructor profile
     const { data: instructorProfile } = await supabase
-      .from('instructor_profiles')
-      .select('id')
-      .eq('user_id', user.id)
+      .from("instructor_profiles")
+      .select("id")
+      .eq("user_id", user.id)
       .single();
 
     if (!instructorProfile) {
-      return { success: false, error: 'Instructor profile not found' };
+      return { success: false, error: "Instructor profile not found" };
     }
 
     const { data, error } = await supabase
-      .from('courses')
+      .from("courses")
       .insert({
         instructor_id: instructorProfile.id,
         ...courseData,
-        status: 'draft',
-        currency: 'USD',
+        status: "draft",
+        currency: "USD",
       })
       .select()
       .single();
@@ -198,34 +210,37 @@ export const createCourse = async (courseData: Partial<Course>) => {
     if (error) throw error;
     return { success: true, data };
   } catch (error) {
-    console.error('Create course error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to create course' 
+    console.error("Create course error:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to create course",
     };
   }
 };
 
 // Update course
-export const updateCourse = async (courseId: string, updates: Partial<Course>) => {
+export const updateCourse = async (
+  courseId: string,
+  updates: Partial<Course>,
+) => {
   try {
     const { data, error } = await supabase
-      .from('courses')
+      .from("courses")
       .update({
         ...updates,
         updated_at: new Date().toISOString(),
       })
-      .eq('id', courseId)
+      .eq("id", courseId)
       .select()
       .single();
 
     if (error) throw error;
     return { success: true, data };
   } catch (error) {
-    console.error('Update course error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to update course' 
+    console.error("Update course error:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to update course",
     };
   }
 };
@@ -235,52 +250,56 @@ export const getInstructorCourses = async () => {
   try {
     const user = await getCurrentUser();
     if (!user) {
-      return { success: false, error: 'Not authenticated' };
+      return { success: false, error: "Not authenticated" };
     }
 
     const { data: instructorProfile } = await supabase
-      .from('instructor_profiles')
-      .select('id')
-      .eq('user_id', user.id)
+      .from("instructor_profiles")
+      .select("id")
+      .eq("user_id", user.id)
       .single();
 
     if (!instructorProfile) {
-      return { success: false, error: 'Instructor profile not found' };
+      return { success: false, error: "Instructor profile not found" };
     }
 
     const { data, error } = await supabase
-      .from('courses')
-      .select('*')
-      .eq('instructor_id', instructorProfile.id)
-      .order('created_at', { ascending: false });
+      .from("courses")
+      .select("*")
+      .eq("instructor_id", instructorProfile.id)
+      .order("created_at", { ascending: false });
 
     if (error) throw error;
     return { success: true, data: data || [] };
   } catch (error) {
-    console.error('Get instructor courses error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to load courses' 
+    console.error("Get instructor courses error:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to load courses",
     };
   }
 };
 
 // Enroll in course
-export const enrollInCourse = async (courseId: string, paymentIntentId: string, amount: number) => {
+export const enrollInCourse = async (
+  courseId: string,
+  paymentIntentId: string,
+  amount: number,
+) => {
   try {
     const user = await getCurrentUser();
     if (!user) {
-      return { success: false, error: 'Not authenticated' };
+      return { success: false, error: "Not authenticated" };
     }
 
     const { data, error } = await supabase
-      .from('enrollments')
+      .from("enrollments")
       .insert({
         user_id: user.id,
         course_id: courseId,
         stripe_payment_intent_id: paymentIntentId,
         amount_paid: amount,
-        currency: 'USD',
+        currency: "USD",
         progress_percentage: 0,
       })
       .select()
@@ -289,10 +308,11 @@ export const enrollInCourse = async (courseId: string, paymentIntentId: string, 
     if (error) throw error;
     return { success: true, data };
   } catch (error) {
-    console.error('Enroll in course error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to enroll in course' 
+    console.error("Enroll in course error:", error);
+    return {
+      success: false,
+      error:
+        error instanceof Error ? error.message : "Failed to enroll in course",
     };
   }
 };
@@ -302,12 +322,13 @@ export const getUserEnrollments = async () => {
   try {
     const user = await getCurrentUser();
     if (!user) {
-      return { success: false, error: 'Not authenticated' };
+      return { success: false, error: "Not authenticated" };
     }
 
     const { data, error } = await supabase
-      .from('enrollments')
-      .select(`
+      .from("enrollments")
+      .select(
+        `
         *,
         courses(
           *,
@@ -315,38 +336,40 @@ export const getUserEnrollments = async () => {
             users(first_name, last_name)
           )
         )
-      `)
-      .eq('user_id', user.id)
-      .order('enrollment_date', { ascending: false });
+      `,
+      )
+      .eq("user_id", user.id)
+      .order("enrollment_date", { ascending: false });
 
     if (error) throw error;
     return { success: true, data: data || [] };
   } catch (error) {
-    console.error('Get user enrollments error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to load enrollments' 
+    console.error("Get user enrollments error:", error);
+    return {
+      success: false,
+      error:
+        error instanceof Error ? error.message : "Failed to load enrollments",
     };
   }
 };
 
 // Course categories
 export const COURSE_CATEGORIES = [
-  'Boxing',
-  'Muay Thai',
-  'Brazilian Jiu-Jitsu',
-  'Karate',
-  'Taekwondo',
-  'Wing Chun',
-  'Kung Fu',
-  'MMA',
-  'Self-Defense',
-  'Kickboxing',
-  'Judo',
-  'Aikido',
-  'Krav Maga',
-  'Capoeira',
-  'Wrestling',
+  "Boxing",
+  "Muay Thai",
+  "Brazilian Jiu-Jitsu",
+  "Karate",
+  "Taekwondo",
+  "Wing Chun",
+  "Kung Fu",
+  "MMA",
+  "Self-Defense",
+  "Kickboxing",
+  "Judo",
+  "Aikido",
+  "Krav Maga",
+  "Capoeira",
+  "Wrestling",
 ] as const;
 
-export type CourseCategory = typeof COURSE_CATEGORIES[number];
+export type CourseCategory = (typeof COURSE_CATEGORIES)[number];
