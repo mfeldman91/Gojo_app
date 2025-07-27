@@ -6,6 +6,22 @@ import { getCurrentUser, logout } from "@/lib/auth";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(getCurrentUser());
+
+  useEffect(() => {
+    // Update user state when component mounts or when localStorage changes
+    const checkUser = () => setUser(getCurrentUser());
+    checkUser();
+
+    // Listen for storage changes to update user state across tabs
+    window.addEventListener('storage', checkUser);
+    return () => window.removeEventListener('storage', checkUser);
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    setUser(null);
+  };
 
   return (
     <nav className="bg-black backdrop-blur border-b border-gray-800 sticky top-0 z-50">
