@@ -626,11 +626,21 @@ export default function Signup() {
                     ) : (
                       <Button
                         size="lg"
-                        disabled={!canCompleteSignup}
+                        disabled={!canCompleteSignup || isSubmitting}
                         className="px-8"
+                        onClick={handleSignup}
                       >
-                        <Play className="w-4 h-4 mr-2" />
-                        Start Training Now
+                        {isSubmitting ? (
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            Creating Account...
+                          </div>
+                        ) : (
+                          <>
+                            <Play className="w-4 h-4 mr-2" />
+                            Start Training Now
+                          </>
+                        )}
                       </Button>
                     )}
                   </div>
