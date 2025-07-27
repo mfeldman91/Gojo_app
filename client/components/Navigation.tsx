@@ -68,23 +68,41 @@ export function Navigation() {
             <Button variant="outline" size="sm" asChild>
               <Link to="/instructor/dashboard">Teach on Gojo</Link>
             </Button>
-            <Button
-              variant="outline"
-              className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
-              asChild
-            >
-              <Link to="/profile">My Profile</Link>
-            </Button>
-            <Button
-              variant="outline"
-              className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
-              asChild
-            >
-              <Link to="/login">Log In</Link>
-            </Button>
-            <Button asChild>
-              <Link to="/signup">Get Started</Link>
-            </Button>
+            {user ? (
+              <>
+                <Button
+                  variant="outline"
+                  className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                  asChild
+                >
+                  <Link to="/profile">
+                    <User className="w-4 h-4 mr-2" />
+                    {user.firstName}
+                  </Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="outline"
+                  className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                  asChild
+                >
+                  <Link to="/login">Log In</Link>
+                </Button>
+                <Button asChild>
+                  <Link to="/signup">Get Started</Link>
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
