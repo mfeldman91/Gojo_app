@@ -601,6 +601,17 @@ export default function Signup() {
                   </div>
                 )}
 
+                {/* Message Display */}
+                {message && (
+                  <div className={`p-3 rounded-lg text-sm ${
+                    message.type === 'success'
+                      ? 'bg-green-100 text-green-800 border border-green-200'
+                      : 'bg-red-100 text-red-800 border border-red-200'
+                  }`}>
+                    {message.text}
+                  </div>
+                )}
+
                 {/* Navigation Buttons */}
                 <div className="flex items-center justify-between pt-6 border-t">
                   <div>
