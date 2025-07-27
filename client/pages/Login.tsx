@@ -88,13 +88,29 @@ export default function Login() {
     if (!validateForm()) return;
 
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
+    setMessage(null);
+
+    try {
+      const result = await login({
+        email: formData.email,
+        password: formData.password,
+        rememberMe: formData.rememberMe,
+      });
+
+      if (result.success && result.user) {
+        setMessage({ type: 'success', text: `Welcome back, ${result.user.firstName}!` });
+        // Redirect after successful login
+        setTimeout(() => {
+          window.location.href = '/profile';
+        }, 1000);
+      } else {
+        setMessage({ type: 'error', text: result.error || 'Login failed' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'An unexpected error occurred. Please try again.' });
+    } finally {
       setIsLoading(false);
-      // For demo purposes, just redirect to profile
-      // In real app, this would handle actual authentication
-      window.location.href = "/profile";
-    }, 1500);
+    }
   };
 
   const handleSocialLogin = (provider: string) => {
