@@ -21,6 +21,7 @@ import InstructorProfile from "./pages/InstructorProfile";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import CreateCourse from "./pages/CreateCourse";
 import Billing from "./pages/Billing";
+import AuthCallback from "./pages/AuthCallback";
 
 const queryClient = new QueryClient();
 
