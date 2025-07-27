@@ -198,42 +198,39 @@ export const signup = async (signupData: SignupData): Promise<{ success: boolean
   }
 };
 
-export const logout = () => {
-  clearSession();
-  // Redirect to home page
-  window.location.href = '/';
+export const logout = async () => {
+  try {
+    await supabaseAuth.signOut();
+    return { success: true };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Logout failed'
+    };
+  }
 };
 
-// Social login (mock implementation)
+// Social login with Google
 export const socialLogin = async (provider: 'google' | 'apple'): Promise<{ success: boolean; user?: User; error?: string }> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1200));
-  
-  // In a real implementation, this would redirect to OAuth provider
-  // For demo purposes, we'll create a mock user
-  const mockUser: User = {
-    id: generateUserId(),
-    email: `demo.${provider}@example.com`,
-    firstName: 'Demo',
-    lastName: 'User',
-    createdAt: new Date().toISOString(),
-  };
-  
-  const users = getStoredUsers();
-  
-  // Check if user already exists
-  const existingUser = users.find(u => u.email === mockUser.email);
-  if (existingUser) {
-    createSession(existingUser, true);
-    return { success: true, user: existingUser };
+  try {
+    if (provider === 'google') {
+      const result = await supabaseAuth.signInWithGoogle();
+      if (!result.success) {
+        return { success: false, error: result.error };
+      }
+
+      // Google OAuth will handle the redirect, so we return success
+      return { success: true };
+    }
+
+    // Apple login not implemented yet
+    return { success: false, error: 'Apple login not yet implemented' };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Social login failed'
+    };
   }
-  
-  // Create new social user
-  users.push(mockUser);
-  storeUsers(users);
-  
-  createSession(mockUser, true);
-  return { success: true, user: mockUser };
 };
 
 // Password reset (mock)
