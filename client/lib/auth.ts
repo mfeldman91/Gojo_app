@@ -246,39 +246,38 @@ export const requestPasswordReset = async (email: string): Promise<{ success: bo
   }
 };
 
-// Profile update
+// Profile update using Supabase
 export const updateProfile = async (updates: Partial<User>): Promise<{ success: boolean; user?: User; error?: string }> => {
-  await new Promise(resolve => setTimeout(resolve, 600));
-  
-  const currentUser = getCurrentUser();
-  if (!currentUser) {
-    return { success: false, error: 'Not authenticated' };
+  try {
+    const currentUser = await getCurrentUser();
+    if (!currentUser) {
+      return { success: false, error: 'Not authenticated' };
+    }
+
+    const result = await supabaseAuth.updateUserProfile(currentUser.id, {
+      first_name: updates.firstName,
+      last_name: updates.lastName,
+      avatar_url: updates.avatar,
+    });
+
+    if (!result.success) {
+      return { success: false, error: result.error };
+    }
+
+    // Return updated user
+    const updatedUser = await getCurrentUser();
+    return { success: true, user: updatedUser || undefined };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Update failed'
+    };
   }
-  
-  const users = getStoredUsers();
-  const userIndex = users.findIndex(u => u.id === currentUser.id);
-  
-  if (userIndex === -1) {
-    return { success: false, error: 'User not found' };
-  }
-  
-  // Update user
-  const updatedUser = { ...users[userIndex], ...updates };
-  users[userIndex] = updatedUser;
-  storeUsers(users);
-  
-  // Update session
-  const session = getSession();
-  if (session) {
-    createSession(updatedUser, session.rememberMe);
-  }
-  
-  return { success: true, user: updatedUser };
 };
 
 // Get user statistics (for dashboard)
 export const getUserStats = (userId: string) => {
-  // Mock user progress data
+  // Mock user progress data - in real app, this would query the database
   return {
     coursesEnrolled: 3 + Math.floor(Math.random() * 10),
     coursesCompleted: 1 + Math.floor(Math.random() * 5),
@@ -289,22 +288,8 @@ export const getUserStats = (userId: string) => {
   };
 };
 
-// Initialize demo users if none exist
+// Initialize - no longer needed with Supabase
 export const initializeDemoUsers = () => {
-  const users = getStoredUsers();
-  if (users.length === 0) {
-    const demoUsers: User[] = [
-      {
-        id: 'demo_user_1',
-        email: 'demo@gojo.com',
-        firstName: 'Demo',
-        lastName: 'User',
-        experience: 'some-experience',
-        martialArtsInterest: ['boxing', 'karate'],
-        plan: 'monthly',
-        createdAt: new Date().toISOString(),
-      }
-    ];
-    storeUsers(demoUsers);
-  }
+  // No longer needed - users are stored in Supabase
+  console.log('Demo users initialization not needed with Supabase');
 };
