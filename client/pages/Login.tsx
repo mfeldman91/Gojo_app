@@ -38,11 +38,22 @@ export default function Login() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [socialLoading, setSocialLoading] = useState<string | null>(null);
+  const [resetLoading, setResetLoading] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     general: "",
   });
+
+  useEffect(() => {
+    // Initialize demo users and check if already logged in
+    initializeDemoUsers();
+    if (isAuthenticated()) {
+      window.location.href = '/profile';
+    }
+  }, []);
 
   const handleInputChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
