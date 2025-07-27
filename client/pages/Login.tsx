@@ -113,9 +113,50 @@ export default function Login() {
     }
   };
 
-  const handleSocialLogin = (provider: string) => {
-    // Handle social login
-    console.log(`Login with ${provider}`);
+  const handleSocialLogin = async (provider: 'google' | 'apple') => {
+    setSocialLoading(provider);
+    setMessage(null);
+
+    try {
+      const result = await socialLogin(provider);
+
+      if (result.success && result.user) {
+        setMessage({ type: 'success', text: `Welcome, ${result.user.firstName}!` });
+        setTimeout(() => {
+          window.location.href = '/profile';
+        }, 1000);
+      } else {
+        setMessage({ type: 'error', text: result.error || 'Social login failed' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Social login failed. Please try again.' });
+    } finally {
+      setSocialLoading(null);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!formData.email) {
+      setMessage({ type: 'error', text: 'Please enter your email address first' });
+      return;
+    }
+
+    setResetLoading(true);
+    setMessage(null);
+
+    try {
+      const result = await requestPasswordReset(formData.email);
+
+      if (result.success) {
+        setMessage({ type: 'success', text: result.message || 'Password reset email sent!' });
+      } else {
+        setMessage({ type: 'error', text: result.error || 'Failed to send reset email' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'An error occurred. Please try again.' });
+    } finally {
+      setResetLoading(false);
+    }
   };
 
   return (
