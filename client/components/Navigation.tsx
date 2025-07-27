@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getCurrentUser, logout } from "@/lib/auth";
+import { supabase } from "@/lib/supabase";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
