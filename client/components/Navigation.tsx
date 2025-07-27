@@ -152,29 +152,48 @@ export function Navigation() {
                     Teach on Gojo
                   </Link>
                 </Button>
-                <Button
-                  variant="outline"
-                  className="w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
-                  asChild
-                >
-                  <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
-                    My Profile
-                  </Link>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
-                  asChild
-                >
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                    Log In
-                  </Link>
-                </Button>
-                <Button className="w-full" asChild>
-                  <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
-                    Get Started
-                  </Link>
-                </Button>
+                {user ? (
+                  <>
+                    <Button
+                      variant="outline"
+                      className="w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                      asChild
+                    >
+                      <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
+                        <User className="w-4 h-4 mr-2" />
+                        {user.firstName}'s Profile
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="outline"
+                      className="w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                      asChild
+                    >
+                      <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                        Log In
+                      </Link>
+                    </Button>
+                    <Button className="w-full" asChild>
+                      <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+                        Get Started
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
