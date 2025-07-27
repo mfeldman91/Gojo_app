@@ -163,6 +163,65 @@ export default function Signup() {
   const canCompleteSignup =
     canProceedStep1 && canProceedStep2 && formData.agreedToTerms;
 
+  const handleSignup = async () => {
+    if (!canCompleteSignup) return;
+
+    setIsSubmitting(true);
+    setMessage(null);
+
+    try {
+      const result = await signup({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+        dateOfBirth: formData.dateOfBirth,
+        experience: formData.experience,
+        martialArtsInterest: formData.martialArtsInterest,
+        goals: formData.goals ? [formData.goals] : [],
+        plan: formData.selectedPlan,
+        agreedToTerms: formData.agreedToTerms,
+      });
+
+      if (result.success && result.user) {
+        setMessage({ type: 'success', text: `Welcome to Gojo, ${result.user.firstName}! Your account has been created.` });
+        // Redirect after successful signup
+        setTimeout(() => {
+          window.location.href = '/profile';
+        }, 2000);
+      } else {
+        setMessage({ type: 'error', text: result.error || 'Signup failed. Please try again.' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'An unexpected error occurred. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleSocialSignup = async (provider: 'google' | 'apple') => {
+    setSocialLoading(provider);
+    setMessage(null);
+
+    try {
+      const result = await socialLogin(provider);
+
+      if (result.success && result.user) {
+        setMessage({ type: 'success', text: `Welcome to Gojo, ${result.user.firstName}!` });
+        setTimeout(() => {
+          window.location.href = '/profile';
+        }, 1000);
+      } else {
+        setMessage({ type: 'error', text: result.error || 'Social signup failed' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Social signup failed. Please try again.' });
+    } finally {
+      setSocialLoading(null);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
