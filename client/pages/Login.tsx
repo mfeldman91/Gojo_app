@@ -27,7 +27,8 @@ import {
   Target,
   ArrowRight,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { login, socialLogin, requestPasswordReset, isAuthenticated, initializeDemoUsers } from "@/lib/auth";
 
 export default function Login() {
   const [formData, setFormData] = useState({
