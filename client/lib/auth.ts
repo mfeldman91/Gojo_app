@@ -1,4 +1,6 @@
-// Authentication service with mock API and session management
+// Authentication service using Supabase
+import * as supabaseAuth from './auth-supabase';
+import { supabase } from './supabase';
 
 export interface User {
   id: string;
@@ -12,6 +14,7 @@ export interface User {
   plan?: string;
   createdAt: string;
   avatar?: string;
+  role?: 'student' | 'instructor' | 'admin';
 }
 
 export interface LoginCredentials {
