@@ -44,6 +44,17 @@ import { signup, socialLogin, isAuthenticated, initializeDemoUsers } from "@/lib
 export default function Signup() {
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [socialLoading, setSocialLoading] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  useEffect(() => {
+    // Initialize demo users and check if already logged in
+    initializeDemoUsers();
+    if (isAuthenticated()) {
+      window.location.href = '/profile';
+    }
+  }, []);
   const [formData, setFormData] = useState({
     // Step 1: Basic Info
     firstName: "",
