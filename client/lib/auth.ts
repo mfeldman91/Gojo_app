@@ -1,4 +1,5 @@
 // Authentication service using Supabase
+import { useState, useEffect } from 'react';
 import * as supabaseAuth from './auth-supabase';
 import { supabase } from './supabase';
 
