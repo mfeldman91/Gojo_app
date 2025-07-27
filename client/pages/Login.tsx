@@ -400,12 +400,23 @@ export default function Login() {
                   </Label>
                 </div>
 
+                {/* Message Display */}
+                {message && (
+                  <div className={`p-3 rounded-lg text-sm ${
+                    message.type === 'success'
+                      ? 'bg-green-100 text-green-800 border border-green-200'
+                      : 'bg-red-100 text-red-800 border border-red-200'
+                  }`}>
+                    {message.text}
+                  </div>
+                )}
+
                 {/* Login Button */}
                 <Button
                   className="w-full"
                   size="lg"
                   onClick={handleLogin}
-                  disabled={isLoading}
+                  disabled={isLoading || socialLoading !== null}
                 >
                   {isLoading ? (
                     <div className="flex items-center gap-2">
