@@ -10,17 +10,28 @@ export function Navigation() {
   const [user, setUser] = useState(getCurrentUser());
 
   useEffect(() => {
-    // Update user state when component mounts or when localStorage changes
-    const checkUser = () => setUser(getCurrentUser());
+    // Update user state when component mounts
+    const checkUser = async () => {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    };
     checkUser();
 
-    // Listen for storage changes to update user state across tabs
-    window.addEventListener('storage', checkUser);
-    return () => window.removeEventListener('storage', checkUser);
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (session?.user) {
+        const currentUser = await getCurrentUser();
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     setUser(null);
   };
 
