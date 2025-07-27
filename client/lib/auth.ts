@@ -233,21 +233,17 @@ export const socialLogin = async (provider: 'google' | 'apple'): Promise<{ succe
   }
 };
 
-// Password reset (mock)
+// Password reset using Supabase
 export const requestPasswordReset = async (email: string): Promise<{ success: boolean; message?: string; error?: string }> => {
-  await new Promise(resolve => setTimeout(resolve, 800));
-  
-  const users = getStoredUsers();
-  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-  
-  if (!user) {
-    return { success: false, error: 'No account found with this email address' };
+  try {
+    const result = await supabaseAuth.resetPassword(email);
+    return result;
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Password reset failed'
+    };
   }
-  
-  return { 
-    success: true, 
-    message: 'Password reset instructions have been sent to your email address' 
-  };
 };
 
 // Profile update
