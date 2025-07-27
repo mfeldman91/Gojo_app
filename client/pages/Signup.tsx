@@ -38,7 +38,8 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { signup, socialLogin, isAuthenticated, initializeDemoUsers } from "@/lib/auth";
 
 export default function Signup() {
   const [step, setStep] = useState(1);
